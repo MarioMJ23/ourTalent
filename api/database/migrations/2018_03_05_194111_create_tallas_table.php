@@ -14,11 +14,11 @@ class CreateTallasTable extends Migration
     public function up()
     {
         Schema::create('tallas', function (Blueprint $table) {
-            $table->increments('ID');
+            $table->increments('id');
             $table->float(  'talla');
             $table->float(  'talla_en');
             $table->integer(  'usuario_id')->unsigned();
-            $table->foreign( 'usuario_id')->references('ID')->on('usuarios');
+            $table->foreign( 'usuario_id')->references('id')->on('usuarios');
             $table->dateTime(   'fecha_de_creacion');
             $table->dateTime(   'fecha_de_actualizacion')->nullable();
         });

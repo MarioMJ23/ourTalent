@@ -14,12 +14,12 @@ class CreateUsuaactividadesTable extends Migration
     public function up()
     {
         Schema::create('usuario_actividad', function (Blueprint $table) {
-            $table->increments('ID');
+            $table->increments('id');
             $table->integer(    'estatus')->default(1);
             $table->integer(  'actividad_id')->unsigned();
-            $table->foreign(  'actividad_id')->references('ID')->on('actividades');
+            $table->foreign(  'actividad_id')->references('id')->on('actividades');
             $table->integer(  'usuario_id')->unsigned();
-            $table->foreign(  'usuario_id')->references('ID')->on('usuarios');
+            $table->foreign(  'usuario_id')->references('id')->on('usuarios');
             $table->dateTime( 'fecha_de_creacion');
             $table->dateTime( 'fecha_de_actualizacion')->nullable();
         });

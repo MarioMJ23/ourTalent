@@ -14,12 +14,12 @@ class CreateCiudadesTable extends Migration
     public function up()
     {
         Schema::create('ciudades', function (Blueprint $table) {
-          $table->increments('ID');
+          $table->increments('id');
           $table->string( 'ciudad');
           $table->string( 'codigo')->nullable();
           $table->integer( 'estatus')->default(1);
           $table->integer(  'estado_id')->unsigned();
-          $table->foreign(  'estado_id')->references('ID')->on('estados');
+          $table->foreign(  'estado_id')->references('id')->on('estados');
           $table->dateTime(   'fecha_de_creacion');
           $table->dateTime(   'fecha_de_actualizacion')->nullable();
         });
