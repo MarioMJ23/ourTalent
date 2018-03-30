@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return 	array('123');
+    return 	array('api Ourtalent');
 });

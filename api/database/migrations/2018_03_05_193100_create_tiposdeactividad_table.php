@@ -16,6 +16,7 @@ class CreateTiposdeactividadTable extends Migration
         Schema::create('tipos_de_actividad', function (Blueprint $table) {
             $table->increments('id');
             $table->string( 'tipo');
+            $table->integer( 'estatus')->default(1);
             $table->dateTime(   'fecha_de_creacion');
             $table->dateTime(   'fecha_de_actualizacion')->nullable();
         });

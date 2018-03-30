@@ -17,7 +17,6 @@ class CreateInstitucionesTable extends Migration
             $table->increments('id');
             $table->string( 'nombre');
             $table->string( 'nombre_corto');
-            $table->string( 'logo');
             $table->integer(  'tipo_de_institucion_id')->unsigned();
             $table->foreign(    'tipo_de_institucion_id')->references('id')->on('tipos_de_institucion');
             $table->dateTime(   'fecha_de_creacion');

@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tiposactividad extends Model	{
-	protected	$table	=	'tipos_de_actividad';
+class Tiposarchivo extends Model	{
+	protected	$table	=	'tipos_de_archivo';
 
 	const	CREATED_AT	=	'fecha_de_creacion';
   const	UPDATED_AT	=	'fecha_de_actualizacion';
@@ -14,7 +14,7 @@ class Tiposactividad extends Model	{
 
 	protected	$hidden	=	[];
 
-	public  function  actividad()	{
-		return $this->belongsTo('App\Actividades');
+	public  function  archivo()	{
+		return $this->belongsTo('App\Archivos');
 	}
 }

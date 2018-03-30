@@ -15,6 +15,7 @@ class CreateUsuariosTable extends Migration
     {
       Schema::create('usuarios', function (Blueprint $table) {
           $table->increments('id');
+          $table->longText( 'descripcion')->nullable();
           $table->string( 'nombre')->nullable();
           $table->string( 'apellido_paterno')->nullable();
           $table->string( 'apellido_materno')->nullable();
@@ -28,9 +29,9 @@ class CreateUsuariosTable extends Migration
           $table->foreign(  'tipo_de_usuario_id')->references('id')->on('tipos_de_usuario');
           $table->integer(  'pais_id')->unsigned();
           $table->foreign(  'pais_id')->references('id')->on('paises');
-          $table->integer(  'estado_id')->unsigned();
+          $table->integer(  'estado_id')->unsigned()->nullable();
           $table->foreign(  'estado_id')->references('id')->on('estados');
-          $table->integer(  'ciudad_id')->unsigned();
+          $table->integer(  'ciudad_id')->unsigned()->nullable();
           $table->foreign(  'ciudad_id')->references('id')->on('ciudades');
           $table->integer(  'estatus')->default(1);
           $table->string( 'imagen_de_perfil')->nullable();
@@ -40,7 +41,6 @@ class CreateUsuariosTable extends Migration
           $table->foreign(  'institucion_id')->references('id')->on('instituciones');
           $table->dateTime( 'fecha_de_creacion');
           $table->dateTime( 'fecha_de_actualizacion')->nullable();
-          $table->rememberToken();
       });
     }
 

@@ -13,24 +13,26 @@ class InstitucionesTableSeeder extends Seeder
     $fdc = date('Y-m-d H:i:s',	strtotime('now'));
 		$iNI = 'nombre';
 		$iNIc = 'nombre_corto';
-		$iL	=	'logo';
+		//$iL	=	'logo';
 		$iTI = 'tipo_de_institucion_id';
 		$iFc = 'fecha_de_creacion';
 
+		/*
+			$iL	=>	'assets/ITESMHidalgo.jpg',
+			$iL	=>	'assets/ITESMMonterrey.jpg',
+			$iL	=>	'assets/ITESMPuebla.jpg',
+		*/
 		$instituciones	=	[
 			[	$iNI => 'Tecnológico de Monterrey Campus Hidalgo',
 				$iNIc	=>	'ITESM Hidalgo',
-				$iL	=>	'assets/ITESMHidalgo.jpg',
 				$iTI	=>	1,
 				$iFc => $fdc	],
 			[	$iNI => 'Tecnológico de Monterrey Campus Monterrey',
 				$iNIc	=>	'ITESM Monterrey',
-				$iL	=>	'assets/ITESMMonterrey.jpg',
 				$iTI	=>	1,
 				$iFc => $fdc	],
 			[	$iNI => 'Tecnológico de Monterrey Campus Puebla',
 				$iNIc	=>	'ITESM Puebla',
-				$iL	=>	'assets/ITESMPuebla.jpg',
 				$iTI	=>	1,
 				$iFc => $fdc 	]
 		];
