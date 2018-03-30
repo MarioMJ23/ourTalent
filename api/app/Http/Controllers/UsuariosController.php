@@ -66,7 +66,7 @@ class UsuariosController extends Controller  {
       'pais_id'  =>  'required|integer',
       'imagen_de_perfil'  =>  'image|mimes:jpeg,png,jpg',
       'estado_id' =>  'integer',
-      'descripcion'  =>  'max:2000'
+      'descripcion'  =>  'max:2000',
       'ciudad_id' =>  'integer',
       'apodo' =>  'max:50'
     ]);
