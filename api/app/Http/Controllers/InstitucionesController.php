@@ -56,6 +56,8 @@ class InstitucionesController extends Controller  {
           $institucion->nombre  =  $request->nombre;
           $institucion->nombre_corto  =  $request->nombre_corto;
 
+          date_default_timezone_set("America/Mexico_City");
+          $institucion->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $institucion->save();
 
           $institucionID  =  $institucion->id;
@@ -124,6 +126,8 @@ class InstitucionesController extends Controller  {
           if (  $request->nombre_corto)
             $institucion->nombre_corto  =  $request->nombre_corto;
 
+          date_default_timezone_set("America/Mexico_City");
+          $institucion->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $institucion->save();
         });
 

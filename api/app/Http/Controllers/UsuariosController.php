@@ -138,7 +138,8 @@ class UsuariosController extends Controller  {
                 $userData->fecha_de_nacimiento  =   $request->fecha_de_nacimiento;
               break;
           };
-
+          date_default_timezone_set("America/Mexico_City");
+          $userData->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $userData->save();
 
           foreach ($request->actividades as $key_actividades => $actividad) {
@@ -269,6 +270,8 @@ class UsuariosController extends Controller  {
                 if (  $request->institucion['nombre_corto'])
                   $institucionData->nombre_corto  =  $request->institucion['nombre_corto'];
 
+                date_default_timezone_set("America/Mexico_City");
+                $institucionData->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
                 $institucionData->save();
               break;
             case 3:
@@ -292,6 +295,8 @@ class UsuariosController extends Controller  {
               break;
           };
 
+          date_default_timezone_set("America/Mexico_City");
+          $usuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $usuario->save();
         });
 
@@ -336,6 +341,8 @@ class UsuariosController extends Controller  {
 
     try  {
       $usuario->estatus  =  1;
+      date_default_timezone_set("America/Mexico_City");
+      $usuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $usuario->save();
       $respuesta = User::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -357,6 +364,8 @@ class UsuariosController extends Controller  {
 
     try {
       $usuario->estatus  =  0;
+      date_default_timezone_set("America/Mexico_City");
+      $usuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $usuario->save();
       $respuesta = User::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -387,6 +396,9 @@ class UsuariosController extends Controller  {
             $usuarioActividadData  =  new Usuarioactividad;
             $usuarioActividadData->usuario_id  =  $request->user()->id;
             $usuarioActividadData->actividad_id  =  $actividad['id'];
+
+            date_default_timezone_set("America/Mexico_City");
+            $usuarioActividadData->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
             $usuarioActividadData->save();
           }
         });
@@ -423,6 +435,8 @@ class UsuariosController extends Controller  {
           $peso->peso_en  =  $request->peso_en;
           $peso->usuario_id  =  $request->user()->id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $peso->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $peso->save();
         });
 
@@ -458,6 +472,8 @@ class UsuariosController extends Controller  {
           $talla->talla_en  =  $request->talla_en;
           $talla->usuario_id  =  $request->user()->id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $talla->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $talla->save();
         });
 
@@ -512,6 +528,8 @@ class UsuariosController extends Controller  {
           $nuevoArchivo->usuario_id  =  $request->user()->id;
           $nuevoArchivo->ruta_del_archivo  =  $this->_guardarArchivo(  $request,  $request->tipo_de_archivo_id);
 
+          date_default_timezone_set("America/Mexico_City");
+          $nuevoArchivo->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $nuevoArchivo->save();
         });
 

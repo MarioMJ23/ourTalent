@@ -65,6 +65,8 @@ class PaisesController extends Controller  {
           $pais->pais  =  $request->pais;
           $pais->codigo  =  $request->codigo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $pais->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $pais->save();
 
           $paisID  =  $pais->id;
@@ -132,7 +134,8 @@ class PaisesController extends Controller  {
           if (  $request->codigo)
             $pais->codigo  =  $request->codigo;
          
-
+          date_default_timezone_set("America/Mexico_City");
+          $pais->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $pais->save();
         });
 
@@ -158,6 +161,9 @@ class PaisesController extends Controller  {
 
     try  {
       $pais->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $pais->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $pais->save();
       $respuesta = Paises::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -178,6 +184,9 @@ class PaisesController extends Controller  {
 
     try {
       $pais->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $pais->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $pais->save();
       $respuesta = Paises::with(  $this->withAll)->find(  $id);
 

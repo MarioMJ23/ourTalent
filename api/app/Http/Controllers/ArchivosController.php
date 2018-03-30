@@ -67,6 +67,8 @@ class ArchivosController extends Controller  {
           $archivo->tipo_de_archivo_id  =  $request->tipo_de_archivo_id;
           $archivo->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $archivo->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $archivo->save();
 
           $archivoID  =  $archivo->id;
@@ -143,6 +145,8 @@ class ArchivosController extends Controller  {
           if (  $request->usuario_id)
             $archivo->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $archivo->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $archivo->save();
         });
 

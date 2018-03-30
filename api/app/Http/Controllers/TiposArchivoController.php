@@ -58,6 +58,8 @@ class TiposArchivoController extends Controller  {
 
           $tipoarchivo->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoarchivo->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoarchivo->save();
 
           $tipoarchivoID  =  $tipoarchivo->id;
@@ -122,6 +124,8 @@ class TiposArchivoController extends Controller  {
           if (  $request->tipo)
             $tipoarchivo->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoarchivo->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoarchivo->save();
         });
 
@@ -147,6 +151,9 @@ class TiposArchivoController extends Controller  {
 
     try  {
       $tipoarchivo->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoarchivo->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoarchivo->save();
       $respuesta = Tiposarchivo::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -167,6 +174,9 @@ class TiposArchivoController extends Controller  {
 
     try {
       $tipoarchivo->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoarchivo->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoarchivo->save();
       $respuesta = Tiposarchivo::with(  $this->withAll)->find(  $id);
 

@@ -60,6 +60,8 @@ class TiposInstitucionController extends Controller  {
           $tipoinstitucion->tipo  =  $request->tipo;
           $tipoinstitucion->descripcion  =  $request->descripcion;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoinstitucion->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoinstitucion->save();
 
           $tipoinstitucionID  =  $tipoinstitucion->id;
@@ -128,6 +130,8 @@ class TiposInstitucionController extends Controller  {
           if (  $request->descripcion)
             $tipoinstitucion->descripcion  =  $request->descripcion;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoinstitucion->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoinstitucion->save();
         });
 
@@ -153,6 +157,9 @@ class TiposInstitucionController extends Controller  {
 
     try  {
       $tipoinstitucion->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoinstitucion->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoinstitucion->save();
       $respuesta = Tiposinstitucion::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -173,6 +180,9 @@ class TiposInstitucionController extends Controller  {
 
     try {
       $tipoinstitucion->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoinstitucion->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoinstitucion->save();
       $respuesta = Tiposinstitucion::with(  $this->withAll)->find(  $id);
 

@@ -20,6 +20,7 @@ class CreateUsuariosTable extends Migration
           $table->string( 'apellido_paterno')->nullable();
           $table->string( 'apellido_materno')->nullable();
           $table->string( 'apodo')->nullable();
+          $table->integer( 'genero')->nullable();
           $table->dateTime( 'fecha_de_nacimiento')->nullable();
           $table->string( 'email')->unique();
           $table->string( 'password');

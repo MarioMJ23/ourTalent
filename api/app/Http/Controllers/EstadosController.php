@@ -66,6 +66,8 @@ class EstadosController extends Controller  {
           $estado->codigo  =  $request->codigo;
           $estado->pais_id  = $request->pais_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $estado->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $estado->save();
 
           $estadoID  =  $estado->id;
@@ -143,6 +145,8 @@ class EstadosController extends Controller  {
           if (  $request->pais_id)
             $estado->pais_id  =  $request->pais_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $estado->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $estado->save();
         });
 
@@ -168,6 +172,9 @@ class EstadosController extends Controller  {
 
     try  {
       $estado->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $estado->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $estado->save();
       $respuesta = Estados::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -188,6 +195,9 @@ class EstadosController extends Controller  {
 
     try {
       $estado->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $estado->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $estado->save();
       $respuesta = Estados::with(  $this->withAll)->find(  $id);
 

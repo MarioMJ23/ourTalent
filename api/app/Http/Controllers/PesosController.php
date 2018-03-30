@@ -62,6 +62,8 @@ class PesosController extends Controller  {
           $peso->peso_en  =  $request->peso_en;
           $peso->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $peso->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $peso->save();
 
           $pesoID  =  $peso->id;
@@ -136,6 +138,8 @@ class PesosController extends Controller  {
           if  (  $request->usuario_id)
             $peso->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $peso->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $peso->save();
         });
 

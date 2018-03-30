@@ -58,6 +58,8 @@ class TiposSangreController extends Controller  {
 
           $tiposangre->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tiposangre->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tiposangre->save();
 
           $tiposangreID  =  $tiposangre->id;
@@ -122,6 +124,8 @@ class TiposSangreController extends Controller  {
           if (  $request->tipo)
             $tiposangre->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tiposangre->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tiposangre->save();
         });
 
@@ -147,6 +151,9 @@ class TiposSangreController extends Controller  {
 
     try  {
       $tiposangre->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tiposangre->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tiposangre->save();
       $respuesta = Tipossangre::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -167,6 +174,9 @@ class TiposSangreController extends Controller  {
 
     try {
       $tiposangre->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tiposangre->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tiposangre->save();
       $respuesta = Tipossangre::with(  $this->withAll)->find(  $id);
 

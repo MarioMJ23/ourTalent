@@ -69,6 +69,8 @@ class CiudadesController extends Controller  {
           $ciudad->codigo  =  $request->codigo;
           $ciudad->estado_id  = $request->estado_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $ciudad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $ciudad->save();
 
           $ciudadID  =  $ciudad->id;
@@ -146,6 +148,8 @@ class CiudadesController extends Controller  {
           if (  $request->estado_id)
             $ciudad->estado_id  =  $request->estado_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $ciudad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $ciudad->save();
         });
 
@@ -171,6 +175,9 @@ class CiudadesController extends Controller  {
 
     try  {
       $ciudad->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $ciudad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $ciudad->save();
       $respuesta = Ciudades::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -191,6 +198,9 @@ class CiudadesController extends Controller  {
 
     try {
       $ciudad->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $ciudad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $ciudad->save();
       $respuesta = Ciudades::with(  $this->withAll)->find(  $id);
 

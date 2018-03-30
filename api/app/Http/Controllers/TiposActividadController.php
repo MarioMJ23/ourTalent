@@ -58,6 +58,8 @@ class TiposActividadController extends Controller  {
 
           $tipoactividad->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoactividad->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoactividad->save();
 
           $tipoactividadID  =  $tipoactividad->id;
@@ -122,6 +124,8 @@ class TiposActividadController extends Controller  {
           if (  $request->tipo)
             $tipoactividad->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipoactividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipoactividad->save();
         });
 
@@ -147,6 +151,9 @@ class TiposActividadController extends Controller  {
 
     try  {
       $tipoactividad->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoactividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoactividad->save();
       $respuesta = Tiposactividad::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -167,6 +174,9 @@ class TiposActividadController extends Controller  {
 
     try {
       $tipoactividad->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $tipoactividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipoactividad->save();
       $respuesta = Tiposactividad::with(  $this->withAll)->find(  $id);
 

@@ -61,6 +61,8 @@ class TallasController extends Controller  {
           $talla->talla_en  =  $request->talla_en;
           $talla->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $talla->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $talla->save();
 
           $tallaID  =  $talla->id;
@@ -135,6 +137,8 @@ class TallasController extends Controller  {
           if  (  $request->usuario_id)
             $talla->usuario_id  =  $request->usuario_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $talla->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $talla->save();
         });
 

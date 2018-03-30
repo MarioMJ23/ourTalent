@@ -66,6 +66,8 @@ class ActividadesController extends Controller  {
           $actividad->logo  =  $request->logo;
           $actividad->tipo_de_actividad_id  =  $request->tipo_de_actividad_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $actividad->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $actividad->save();
 
           $actividadID  =  $actividad->id;
@@ -138,6 +140,8 @@ class ActividadesController extends Controller  {
           if (  $request->tipo_de_actividad_id)
             $actividad->tipo_de_actividad_id  =  $request->tipo_de_actividad_id;
 
+          date_default_timezone_set("America/Mexico_City");
+          $actividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $actividad->save();
         });
 
@@ -164,6 +168,9 @@ class ActividadesController extends Controller  {
 
     try  {
       $actividad->estatus  =  1;
+
+      date_default_timezone_set("America/Mexico_City");
+      $actividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $actividad->save();
       $respuesta = Actividades::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -184,6 +191,9 @@ class ActividadesController extends Controller  {
 
     try {
       $actividad->estatus  =  0;
+
+      date_default_timezone_set("America/Mexico_City");
+      $actividad->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $actividad->save();
       $respuesta = Actividades::with(  $this->withAll)->find(  $id);
 

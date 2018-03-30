@@ -58,6 +58,8 @@ class TiposUsuarioController extends Controller  {
 
           $tipousuario->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipousuario->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipousuario->save();
 
           $tipousuarioID  =  $tipousuario->id;
@@ -122,6 +124,8 @@ class TiposUsuarioController extends Controller  {
           if (  $request->tipo)
             $tipousuario->tipo  =  $request->tipo;
 
+          date_default_timezone_set("America/Mexico_City");
+          $tipousuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
           $tipousuario->save();
         });
 
@@ -147,6 +151,8 @@ class TiposUsuarioController extends Controller  {
 
     try  {
       $tipousuario->estatus  =  1;
+      date_default_timezone_set("America/Mexico_City");
+      $tipousuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipousuario->save();
       $respuesta = Tiposusuario::with(  $this->withAll)->find(  $id);
       return  response()->json([  'error' =>  false,
@@ -167,6 +173,8 @@ class TiposUsuarioController extends Controller  {
 
     try {
       $tipousuario->estatus  =  0;
+      date_default_timezone_set("America/Mexico_City");
+      $tipousuario->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
       $tipousuario->save();
       $respuesta = Tiposusuario::with(  $this->withAll)->find(  $id);
 
