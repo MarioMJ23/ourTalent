@@ -14,7 +14,7 @@ class User extends Authenticatable  {
   const CREATED_AT  = 'fecha_de_creacion';
   const UPDATED_AT  = 'fecha_de_actualizacion';
 
-  protected $fillable = [  'id',  'descripcion',  'nombre',  'apellido_paterno',  'apellido_materno',  'apodo',  'fecha_de_nacimiento',  'email',  'password', 'telefono',  'telefono_movil',  'tipo_de_usuario_id', 'pais_id',  'estado_id',  'ciudad_id',  'estatus',  'imagen_de_perfil', 'tipo_de_sangre_id',  'institucion_id', 'fecha_de_creacion',  'fecha_de_actualizacion'  ];
+  protected $fillable = [  'id',  'descripcion',  'nombre',  'apellido_paterno',  'apellido_materno',  'apodo',  'genero',  'fecha_de_nacimiento',  'email',  'password', 'telefono',  'telefono_movil',  'tipo_de_usuario_id', 'pais_id',  'estado_id',  'ciudad_id',  'estatus',  'imagen_de_perfil', 'tipo_de_sangre_id',  'institucion_id', 'fecha_de_creacion',  'fecha_de_actualizacion'  ];
 
   protected $hidden = [ 'password',  'tipo_de_usuario_id', 'pais_id',  'estado_id',  'ciudad_id',  'tipo_de_sangre_id',
   'institucion_id'];

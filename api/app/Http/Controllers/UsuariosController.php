@@ -87,6 +87,10 @@ class UsuariosController extends Controller  {
       return  $input->tipo_de_usuario_id == 3;
     });
 
+    $validacionObj->sometimes('genero', 'required|integer', function( $input) {
+      return  $input->tipo_de_usuario_id == 3;
+    });
+
     $validacionObj->sometimes('fecha_de_nacimiento', 'required|date_format:Y-m-d', function( $input) {
       return  $input->tipo_de_usuario_id == 3;
     });
@@ -136,6 +140,7 @@ class UsuariosController extends Controller  {
                 $userData->apellido_materno  =   $request->apellido_materno;
                 $userData->tipo_de_sangre_id  =   $request->tipo_de_sangre_id;
                 $userData->fecha_de_nacimiento  =   $request->fecha_de_nacimiento;
+                $userData->genero  =  $request->genero;
               break;
           };
           date_default_timezone_set("America/Mexico_City");
@@ -235,6 +240,10 @@ class UsuariosController extends Controller  {
       return  $usuario->tipo_de_usuario_id  == 3;
     });
 
+    $validacionObj->sometimes('genero', 'integer', function( $input) {
+      return  $input->tipo_de_usuario_id == 3;
+    });
+
     $validacionObj->sometimes('fecha_de_nacimiento', 'date_format:Y-m-d', function( $input)  use (  $usuario){
       return  $usuario->tipo_de_usuario_id  == 3;
     });
@@ -271,7 +280,7 @@ class UsuariosController extends Controller  {
                   $institucionData->nombre_corto  =  $request->institucion['nombre_corto'];
 
                 date_default_timezone_set("America/Mexico_City");
-                $institucionData->fecha_de_creacion  =  date('Y-m-d H:i:s',  strtotime('now'));
+                $institucionData->fecha_de_actualizacion  =  date('Y-m-d H:i:s',  strtotime('now'));
                 $institucionData->save();
               break;
             case 3:
@@ -292,6 +301,9 @@ class UsuariosController extends Controller  {
 
                 if (  $request->fecha_de_nacimiento)
                   $usuario->fecha_de_nacimiento  =   $request->fecha_de_nacimiento;
+
+                if  (  $request->genero)
+                  $usuario->genero  =  $request->genero;
               break;
           };
 
