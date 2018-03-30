@@ -147,7 +147,7 @@ class UsuariosTableSeeder extends Seeder
 				$iI	 =>	1,
 				$iImgP	 =>	'assets/imagenes/usuarios/borregos_puebla/perfil/myImage.jpg',
 				$iFc	 =>	$fdc
-			],
+			]
 		];
 
 		DB::table('usuarios')->insert(	$usuarios);
