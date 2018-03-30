@@ -17,6 +17,7 @@ Route::post('/usuarios/crear',  'UsuariosController@store');
 Route::middleware(['auth:api', 'estatus'])->group(function () {
 	Route::get('/usuarios/miperfil',	'UsuariosController@miPerfil');
 	Route::get('/usuarios/complete',	'UsuariosController@complete');
+	Route::post('/usuarios/buscar',  'UsuariosController@buscar');
 	Route::post('/usuarios/habilitar/{id}',  'UsuariosController@habilitar');
 	Route::post('/usuarios/deshabilitar/{id}',  'UsuariosController@deshabilitar');
 	Route::post('/usuarios/asignar_actividades',  'UsuariosController@asignarActividades');

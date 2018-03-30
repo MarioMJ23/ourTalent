@@ -87,7 +87,7 @@ class UsuariosController extends Controller  {
       return  $input->tipo_de_usuario_id == 3;
     });
 
-    $validacionObj->sometimes('genero', 'required|integer', function( $input) {
+    $validacionObj->sometimes('genero', 'required|digits_between:1,2', function( $input) {
       return  $input->tipo_de_usuario_id == 3;
     });
 
@@ -191,6 +191,102 @@ class UsuariosController extends Controller  {
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
+  public  function  buscar(  Request  $request)  {
+    $validacionObj = Validator::make(  $request->all(),  [
+      'pais_id'  =>  'integer',
+      'estado_id' =>  'integer',
+      'ciudad_id' =>  'integer',
+      'apodo' =>  'max:50',
+      'nombre'  =>  'max:100',
+      'genero'  =>  'digits_between:1,2',
+      'peso'  =>  'array',
+      'talla'  =>  'array',
+      'email'  =>  'email'
+    ]);
+
+    $validacionObj->sometimes(['peso.min', 'peso.max', 'tipo'], 'required|numeric', function( $input)  {
+      return  isset($input->peso);
+    });
+
+    $validacionObj->sometimes(['talla.min', 'talla.max'], 'required|numeric', function( $input)  {
+      return  isset($input->talla);
+    });
+
+    if ( !$validacionObj->fails()) {
+      try {
+        $eloquentObj  = User::with(  $this->withAll);
+        
+        if (  $request->peso)  {
+          $eloquentObj  =  $eloquentObj->whereHas( 'pesos',  function  (  $query) use ( $request) {
+            $tipo  =  $request->tipo  =  1 ? 'peso'  :  'peso_en';
+
+            $query->where(  $tipo,  '>=',  $request->pesos->min)
+                  ->where(  $tipo,  '<=',  $request->pesos->max);
+          });
+        };
+
+        if (  $request->talla)  {
+          $eloquentObj  =  $eloquentObj->whereHas( 'tallas',  function  (  $query) use ( $request) {
+            $tipo  =  $request->tipo  =  1 ?  'talla'  :  'talla_en';
+
+            $query->where(  $tipo,  '>=',  $request->tallas->min)
+                  ->where(  $tipo,  '<=',  $request->tallas->max);
+          });
+        };
+
+        $filtros  =  [];
+
+        if (  $request->email)
+          $filtros[]  =  ['email', '=', $request->email];
+
+        if (  $request->pais_id)
+          $filtros[]  =  ['pais_id', '=', $request->pais_id];
+
+        if (  $request->estado_id)
+          $filtros[]  =  ['estado_id',  '=',  $request->estado_id];
+
+        if (  $request->ciudad_id)
+          $filtros[]  =  ['ciudad_id',  '=',  $request->ciudad_id];
+
+        $institucionesQuery = clone(  $eloquentObj);
+        $usuariosQuery  = clone( $eloquentObj);
+
+        if (  $request->nombre)  {
+          $institucionesQuery  =  $institucionesQuery->whereHas( 'institucion',  function(  $query) use  (  $request) {
+                                        $query->where(  'nombre',  'like', '%'.$request->nombre.'%')
+                                              ->orWhere(  'nombre_corto',  'like', '%'.$request->nombre.'%');
+                                      });
+
+          $usuariosQuery = $usuariosQuery->where(  function  (  $query)  use  (  $request)  {
+              $query->where('nombre',  'like', '%'.$request->nombre.'%')
+                    ->orWhere('apellido_paterno',  'like', '%'.$request->nombre.'%')
+                    ->orWhere('apellido_materno',  'like', '%'.$request->nombre.'%');
+          });
+        }
+
+        $respuesta[  'instituciones']  =  $institucionesQuery->where(  'tipo_de_usuario_id', 2)
+                                                             ->where(  $filtros)
+                                                             ->get();
+        if (  $request->genero)
+          $filtros[]  =  ['genero',  '=',  $request->genero];
+
+        $respuesta[  'usuarios']  =  $usuariosQuery->where(  'tipo_de_usuario_id', 3)->where(  $filtros)->get();
+
+        return  response()->json([  'error' =>  false,
+                                    'mensaje' =>  '',
+                                    'respuesta' =>  $respuesta],  200);
+      }  catch  (  \Illuminate\Database\QueryException $e) {
+        return  response()->json([  'error'  =>  true,
+                                  'mensaje' => 'Ha occurido un error en el proceso.',
+                                  'respuesta'  =>  $e->errorInfo[2]], 500);
+      }
+    }  else {
+      return  response()->json([  'error'  =>  true,
+                                  'mensaje' => 'Los patametros estan errones',
+                                  'respuesta'  =>  $validacionObj->errors()], 400);
+    } 
+  }
+
   /**
    * Show the form for editing the specified resource.
    *
@@ -240,7 +336,7 @@ class UsuariosController extends Controller  {
       return  $usuario->tipo_de_usuario_id  == 3;
     });
 
-    $validacionObj->sometimes('genero', 'integer', function( $input) {
+    $validacionObj->sometimes('genero', 'digits_between:1,2', function( $input) {
       return  $input->tipo_de_usuario_id == 3;
     });
 
@@ -328,21 +424,6 @@ class UsuariosController extends Controller  {
     } 
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public  function destroy($id)  {
-  }
-
-  public  function miPerfil( Request $request)  {
-    $usuario =  $request->user();
-    $respuesta = User::with(  $this->withAll)->find(  $usuario['id']);
-
-    return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
-  }
 
   public  function  habilitar(  Request  $request,  $id)  {
     $usuario  =  User::where(  'estatus',  0)->find(  $id);
@@ -388,6 +469,22 @@ class UsuariosController extends Controller  {
                                 'mensaje' => 'Ha occurido un error en el proceso.',
                                 'respuesta'  =>  $e->errorInfo[2]], 500);
     }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public  function destroy($id)  {
+  }
+
+  public  function miPerfil( Request $request)  {
+    $usuario =  $request->user();
+    $respuesta = User::with(  $this->withAll)->find(  $usuario['id']);
+
+    return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
   public  function  asignarActividades(  Request  $request)  {
