@@ -1,0 +1,79 @@
+page-register {
+  .crear-button {
+    background-color: $silverColor;
+    border: solid !important;
+    border-width: 2% !important;
+    border-color: $backgruondInput;
+    border-radius: 2% !important; 
+    color:  $backgruondInput;
+    &:hover {
+      opacity: .85;
+      /*background-color:   $lightgreenColor;*/
+    };
+    &:active {
+      opacity: .90;
+      /*background-color:   $overlightgreenColor;*/
+    };
+  }
+
+  .regresar-button {
+    background-color: $silverColor;
+    border: solid !important;
+    border-width: 2% !important;
+    border-color: $backgruondInput;
+    border-radius: 2% !important; 
+    color:  $backgruondInput;
+    &:hover {
+      opacity: .85;
+      /*background-color:   $lightgreenColor;*/
+    };
+    &:active {
+      opacity: .90;
+      /*background-color:   $overlightgreenColor;*/
+    };
+  }
+
+  .scrollable {
+    height: 99%;
+  }
+
+  $borderInputColor:  $darkgreenColorBshadow;
+  $colorInput:  $darkgreenColorBshadow;
+  $backgroundInput:  $clearColor;
+
+  input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color:  $backgroundInput;
+  }
+
+  .label-input  {
+    width: 100%;
+    font-size: 14px;
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold !important;
+  }
+
+  .item.item-input.row  {
+    border: solid !important;
+    border-width: 2px !important;
+    border-radius: 5px !important;
+    margin: 0px 0px 0px 0px !important;
+    padding:  -20px 2px -20px 2px !important;
+    font-weight: bold !important;
+    width: 99%;
+    font-size: 14px !important;
+    border-color: $borderInputColor;
+    color:  $colorInput ;
+    background-color:   $backgroundInput;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px   $backgroundInput inset !important;
+    /*-webkit-appearance: checkbox  !important;*/
+    -webkit-text-fill-color: $colorInput;
+  }
+
+  input  {
+    color: $colorInput;
+  }
+}

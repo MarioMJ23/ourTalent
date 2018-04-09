@@ -1,0 +1,170 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+$backgruondInput: #3C5361;
+$inputColor:  silver;
+
+$darkgreenColorBshadow:  #203647;
+$darkgreenColor:  #203647  !important;
+$mediumgreenColor:  #3C5361  !important;
+$overlightgreenColor:  #818d93  !important;
+$lightgreenColor:  #5d707b  !important;
+$clearColor:  #ffffff  !important;
+$silverColor:  #c0c0c0;
+
+*::-webkit-input-placeholder {
+  color: gray !important;
+}
+*:-moz-placeholder {
+  color: gray !important;
+}
+*:-ms-input-placeholder { /* IE10+ */
+  color: gray !important;
+}
+
+body {
+  -webkit-user-select:  text !important;
+  -moz-user-select: text !important;
+  -ms-user-select:  text !important;
+  user-select:  text !important;
+}
+
+input {
+  -webkit-user-select:  text !important;
+  -moz-user-select: text !important;
+  -ms-user-select:  text !important;
+  user-select:  text !important;
+  text-align: center !important;
+
+  /*padding: -20pc 0px -20px 0px !important;*/
+  /*height: 5px;*/
+}
+
+
+
+.dark-green-background  { 
+  background-color:  $darkgreenColor;
+}
+
+.medium-green-background  {
+  background-color:  $mediumgreenColor;
+}
+
+.overlight-green-background  {
+  background-color:  $overlightgreenColor;
+}
+
+.light-green-background  {
+  background-color:  $lightgreenColor;
+}
+
+.white-background  {
+  background-color:  $clearColor;
+}
+
+.input-background  {
+  background-color:  $inputColor;
+}
+
+.silver-background  {
+  background-color:  silver;
+}
+
+.dark-green-color  { 
+  color:  $darkgreenColor;
+}
+
+.medium-green-color  {
+  color:  $mediumgreenColor;
+}
+
+.overlight-green-color  {
+  color:  $overlightgreenColor;
+}
+
+.light-green-color  {
+  color:  $lightgreenColor;
+}
+
+.white-color  {
+  color:  $clearColor;
+}
+
+.black-color  {
+  color:  #000000  !important;
+}
+
+.gray-color  {
+  color:  #808080  !important;
+}
+
+.silver-color  {
+  color: silver;
+}
+
+/*.scrollable-login  {
+  height: 72%;
+  position: absolute;
+  width: 100%;
+  white-space: initial; 
+  left: 0;
+}*/
+
+.scrollable {
+  height: 83%;
+  position: absolute;
+  width: 100%;
+  /*max-height:100vh;*/
+  white-space: initial; 
+  left: 0;
+}
+
+.bar-header {
+  border: 0px !important;
+  border-bottom-color: transparent !important;
+  background-image: none !important;
+  border-bottom: none !important;
+}
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+/*.header-md::after  {*/
+  background-image: none;
+}
+
+.scroll-content {
+  overflow-y: hidden;
+}
+
+.max-height {
+  height: 100%;
+}
+
+.button-web  {
+  padding: 6% 0px 6% 0px !important;
+  height: 10%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px !important;
+}
+
+.button-mobile  {
+  padding: 10% 0px 10% 0px !important;
+  height: 30%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px !important;
+}

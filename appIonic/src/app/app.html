@@ -1,0 +1,16 @@
+<ion-menu *ngFor="let mItem of catalogoDeMenus" side="{{  mItem.side  }}" type="{{  mItem.type  }}" [content]="content" id="{{  'menu'  + mItem.tipo_de_usuario }}">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="fondoSideBar">
+    <ion-list>
+      <button menuClose ion-item *ngFor="let item of mItem.buttons" (click)="abrirPagina(  paginas[item.page_name])" class="fondoSideBar">
+        <ion-icon name="{{  item.ion_name }}" class="iconSideBar"></ion-icon> {{  item.title  }}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage" swipeBackEnabled="true"></ion-nav>

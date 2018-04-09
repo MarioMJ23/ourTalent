@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "494202316829",
+    "firebase_url": "https://ourtalent-5eb49.firebaseio.com",
+    "project_id": "ourtalent-5eb49",
+    "storage_bucket": "ourtalent-5eb49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494202316829:android:7484fa8f40b8cd34",
+        "android_client_info": {
+          "package_name": "com.ourtalent.dapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494202316829-6bdd2udeija72314vimbt6cp14ok4le8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8MYAvzKEP7MIyRKLHvDXZ3pjbhqgMUaI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

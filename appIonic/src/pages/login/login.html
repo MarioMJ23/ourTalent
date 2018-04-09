@@ -1,0 +1,96 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header no-lines class="bar-header">
+  <ion-grid no-lines padding-left padding-right class="dark-green-background">
+    <ion-row no-lines class="">
+      <ion-col col-12 padding-left padding-right class="gray-color" text-center>
+          <h3 class="gray-color" text-center padding-top>
+          <!-- <ion-img width="80" height="80" src="../../assets/imgs/logo.png"></ion-img> -->
+            <strong class="silver-color">
+              Ourtalent  
+            </strong>
+          </h3>
+          <ion-item  class="dark-green-background"  padding  no-lines  text-wrap  text-center>
+            <p  class="gray-color" text-center>
+              <strong>
+                Ingesa tu <strong class="silver-color">email</strong> y <strong class="silver-color">contraseña</strong> si aún no cuentas con una, <strong class="silver-color">únete a nosotros</strong>.
+              </strong>
+            </p>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content  id="LoginPage" class="dark-green-background"  text-center> 
+  <form name="loginForm" [formGroup]="loginForm"  (ngSubmit)="doLogin()"  >
+      <ion-scroll padding-left padding-right class="scrollable" scrollY="true" >
+        <ion-grid padding-left padding-right class="" text-center>
+          <ion-row class="" text-wrap>
+            <ion-col col-12>
+              <ion-list>
+                <ion-item class="row dark-green-background" no-lines>
+                  <ion-label class="label-input">Email:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input  placeholder="Ingresa tu email aquí" type="email" class="white-color" name="email" formControlName="email" [(ngModel)]="usuarioLogin.email" >
+                  </ion-input>
+                </ion-item>
+                <ion-item class="dark-green-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
+                  <p>Por favor ingresa tu <strong>Email</strong></p>
+                </ion-item>
+                <ion-item class="row dark-green-background" no-lines>
+                  <ion-label class="label-input">Contraseña:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input placeholder="Ingresa tu contraseña aquí" type="password" name="password" formControlName="password" [(ngModel)]="usuarioLogin.password">
+                  </ion-input>
+                </ion-item>
+                <ion-item *ngIf="password.hasError('required')  &&  password.touched" no-lines class=" dark-green-background">
+                  <p>Por favor ingresa tu <strong>Contraseña</strong></p>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 padding-top>
+              <ion-item no-lines class="dark-green-background" text-wrap text-center>
+                <p class="message-rule" text-center>
+                  <strong class="silver-color">
+                      Usa tu talento para formar tu futuro.
+                  </strong>
+                </p>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-scroll>
+  </form>
+</ion-content>
+<ion-footer class="input-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button type="ng-submit" ion-button full [disabled]="!loginForm.valid"  (click)="doLogin();" class="login-button {{classStyles.classButton}}">
+          Entrar
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button  ion-button full class="crear-button {{classStyles.classButton}}" (click)="goToRegister();">
+          Crear cuenta
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

@@ -1,0 +1,147 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-lines class="bar-header">
+  <ion-grid no-lines padding-left padding-right class="white-background">
+    <ion-row no-lines class="">
+      <ion-col col-12 padding-left padding-right class="gray-color" text-center>
+          <h3 class="gray-color" text-center padding-top>
+          <!-- <ion-img width="80" height="80" src="../../assets/imgs/logo.png"></ion-img> -->
+            <strong class="dark-green-color">
+              Ourtalent  
+            </strong>
+          </h3>
+          <ion-item  class="white-background"  padding  no-lines  text-wrap  text-center>
+            <p  class="gray-color" text-center>
+              <strong>
+                <strong class="dark-green-color">Únete a nosotros</strong>, para completar tu registro solo tienes que proporcionarnos los datos solicitados en el siguiente formulario.
+              </strong>
+            </p>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content id="RegisterPage" padding-left padding-right class="white-background">
+  <ion-scroll padding-left padding-right class="scrollable" scrollY="true" >
+      <form name="registerForm" [formGroup]="registerForm">
+        <ion-grid padding-left padding-right text-center>
+          <ion-row class=""  text-wrap>
+            <ion-col col-12>
+              <ion-list>
+                <ion-item class="row white-background" no-lines>
+                  <ion-label class="label-input">Email:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input  placeholder="Ingresa tu email aquí" type="email" class="white-color" name="email" formControlName="email" [(ngModel)]="nuevoUsuario.email" >
+                  </ion-input>
+                </ion-item>
+                <ion-item class="white-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
+                  <p>Por favor ingresa tu <strong>Email</strong></p>
+                </ion-item>
+
+                <ion-item class="row white-background" no-lines>
+                  <ion-label class="label-input">Contraseña:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input placeholder="Ingresa tu contraseña aquí" type="password" name="password" formControlName="password" [(ngModel)]="nuevoUsuario.password">
+                  </ion-input>
+                </ion-item>
+                <ion-item *ngIf="password.hasError('required')  &&  password.touched" no-lines class=" white-background">
+                  <p>Por favor ingresa tu <strong>Contraseña</strong></p>
+                </ion-item>
+
+                <ion-item class="row white-background" no-lines>
+                  <ion-label class="label-input">Confirmar contraseña:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input placeholder="Confirma tu contraseña aquí" type="password" name="confirmarPassword"  formControlName="confirmarPassword" [(ngModel)]="nuevoUsuario.confirmarPassword">
+                  </ion-input>
+                </ion-item>
+                <ion-item *ngIf="nuevoUsuario.confirmarPassword  !=  nuevoUsuario.password" no-lines class=" white-background">
+                  <p>Por favor verifica tu <strong>Contraseña y CONFIRMALA</strong></p>
+                </ion-item>
+
+                <ion-item class="row white-background" no-lines>
+                  <ion-label class="label-input">Teléfono:</ion-label>
+                </ion-item>
+                <ion-item class="item item-input row" no-lines>
+                  <ion-input  placeholder="Ingresa tu teléfono aquí" type="tel" class="white-color" name="telefono" formControlName="telefono" [(ngModel)]="nuevoUsuario.telefono" >
+                  </ion-input>
+                </ion-item>
+                <ion-item class="white-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
+                  <p>Por favor ingresa un  <strong>número telefoníco</strong> valido</p>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-segment formControlName="tipo_de_usuario_id"  [(ngModel)]="nuevoUsuario.tipo_de_usuario_id" (ionChange)="segmentChanged($event)" color="registerColor"  class="white-background dark-green-color">
+              <ion-segment-button  *ngFor="let item of catalogoDeTiposDeUsuario"  value="{{ item.id }}" (click)="segmentChanged( item);">
+                {{ item.tipo }}
+              </ion-segment-button>
+            </ion-segment>
+            <div [ngSwitch]="nuevoUsuario.tipo_de_usuario_id">
+              <ion-grid *ngSwitchCase="3">
+                <ion-row>
+                  <ion-col col-12>
+                    <ion-list>
+                      <ion-item>sadasdsadasdas</ion-item>
+                    <!-- 
+                      <form>
+                        <ion-item class="row white-background" no-lines>
+                          <ion-label class="label-input">Email:</ion-label>
+                        </ion-item>
+                        <ion-item class="item item-input row" no-lines>
+                          <ion-input  placeholder="Ingresa tu email aquí" type="email" class="white-color" name="email" formControlName="email" [(ngModel)]="nuevoUsuario.email" >
+                          </ion-input>
+                        </ion-item>
+                        <ion-item class="white-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
+                          <p>Por favor ingresa tu <strong>Email</strong></p>
+                        </ion-item>
+                      </form>
+                     -->
+                     </ion-list>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid *ngSwitchCase="2">
+                <ion-row>
+                  <ion-col  col-12>
+                    <ion-item>ddddddddddddd</ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <!-- [disabled]=""  (click)=""  -->
+          <button  type="ng-submit"  ion-button full  [disabled]="!registerForm.valid"  (click)="doRegister();"  class="crear-button {{classStyles.classButton}}">
+            Crear cuenta
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <!-- (click)="" -->
+          <button  ion-button full class="regresar-button {{classStyles.classButton}}" (click)="goToLogin()" >
+            Regresar al Login
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-scroll>
+</ion-content>
+<!-- <ion-footer class="dark-green-background">
+  
+</ion-footer> -->

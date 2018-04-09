@@ -1,0 +1,68 @@
+[
+  {
+    "tipo_de_usuario":  "1",
+    "side"  : "right",
+    "type"  : "overlay",
+    "buttons" : [
+      {
+        "ion_name": "home",
+        "title":  "Mi perfil",
+        "page_name":  "MyProfilePage"
+      },
+      {
+        "ion_name":  "eye",
+        "title":  "Inicio",
+        "page_name":  "HomePage"
+      },
+      {
+        "ion_name": "power",
+        "title":  "Cerrar sesión",
+        "page_name":  "LogoutPage"
+      }
+    ]
+  },
+  {
+    "tipo_de_usuario":  "2",
+    "side"  : "right",
+    "type"  : "overlay",
+    "buttons" : [
+      {
+        "ion_name": "home",
+        "title":  "Mi perfil",
+        "page_name":  "MyProfilePage"
+      },
+      {
+        "ion_name":  "eye",
+        "title":  "Inicio",
+        "page_name":  "HomePage"
+      },
+      {
+        "ion_name": "power",
+        "title":  "Cerrar sesión",
+        "page_name":  "LogoutPage"
+      }
+    ]
+  },
+  {
+    "tipo_de_usuario":  "3",
+    "side"  : "right",
+    "type"  : "overlay",
+    "buttons" : [
+      {
+        "ion_name": "home",
+        "title":  "Mi perfil",
+        "page_name":  "MyProfilePage"
+      },
+      {
+        "ion_name":  "eye",
+        "title":  "Inicio",
+        "page_name":  "HomePage"
+      },
+      {
+        "ion_name": "power",
+        "title":  "Cerrar sesión",
+        "page_name":  "LogoutPage"
+      }
+    ]
+  }
+]
