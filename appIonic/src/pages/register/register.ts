@@ -40,10 +40,12 @@ export class RegisterPage {
     apellido_paterno:  [  '',  Validators.compose(  [  Validators.required,  Validators.minLength(5),  Validators.maxLength(30)])],
     apellido_materno:  [  '',  Validators.compose(  [  Validators.required,  Validators.minLength(5),  Validators.maxLength(30)])],
     tipo_de_sangre_id:  [  '',  Validators.compose(  [  Validators.required])],
+    fecha_de_nacimiento:  [  '',  Validators.compose(  [  Validators.required])],
+    genero:  [  '',  Validators.compose(  [  Validators.required])],
     apodo:  [  '',  Validators.compose(  [Validators.minLength(5),  Validators.maxLength(15)])]
   };
 
-  private  validacionesInstituciones:  any  =  {
+  private  validacionesInstitucion:  any  =  {
     nombre:  [  '',  Validators.compose(  [  Validators.required,  Validators.minLength(5),  Validators.maxLength(50)])],
     nombre_corto:  [  '',  Validators.compose(  [  Validators.required,  Validators.minLength(5),  Validators.maxLength(50)])],
     tipo_de_institucion_id:  [  '',  Validators.compose(  [  Validators.required])]
@@ -70,7 +72,7 @@ export class RegisterPage {
   public  genero:  AbstractControl;
 
   public  nuevoUsuario:  any  =  {
-    tipo_de_usuario_id:  3,
+    tipo_de_usuario_id:  null,
     email:  null,
     password:  null,
     confirmarPassword:  null,
@@ -160,6 +162,9 @@ export class RegisterPage {
     this.catalogoDeTiposDeSangre  =  datosRespuesta.respuesta[  'tipos_de_sangre'];
     this.catalogoDeTiposDeInstituciom  =  datosRespuesta.respuesta[  'tipos_de_institucion'];
     this.initFormularioGeneral();
+    this.initFormularioUsuario();
+    this.initFormularioInstitucion();
+    this.tipo_de_usuario_id  =  3  //  abriendo el segment por default 
   };
 
   private  initFormularioGeneral()  {
@@ -170,5 +175,24 @@ export class RegisterPage {
     this.telefono = this.registerForm.controls['telefono'];
     this.tipo_de_usuario_id = this.registerForm.controls['tipo_de_usuario_id'];
     this.confirmarPassword = this.registerForm.controls['confirmarPassword'];
+  }
+
+  private  initFormularioUsuario()  {
+    this.usuarioForm  =  this.usuarioForm.group(  this.validacionesUsuario);
+
+    this.nombre  =  this.usuarioForm.controls[  'nombre'];
+    this.apellido_paterno  =  this.usuarioForm.controls[  'apellido_paterno'];
+    this.apellido_materno  =  this.usuarioForm.controls[  'apellido_materno'];
+    this.fecha_de_nacimiento  =  this.usuarioForm.controls[  'fecha_de_nacimiento'];
+    this.tipo_de_sangre_id  =  this.usuarioForm.controls[  'tipo_de_sangre_id'];
+    this.genero  =  this.usuarioForm.controls[  'genero'];
+  }
+
+  private  initFormularioInstitucion()  {
+    this.institucionForm  =  this.institucionForm.group(  this.validacionesInstitucion);
+
+    this.institucion_nombre  =  this.institucionForm.controls[  'nombre'];
+    this.institucion_nombre_corto  =  this.institucionForm.controls[  'nombre_corto'];
+    this.institucion_tipo  =  this.institucionForm.controls[  'tipo_de_institucion_id'];
   }
 }
