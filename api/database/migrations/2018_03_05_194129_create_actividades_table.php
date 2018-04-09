@@ -19,6 +19,7 @@ class CreateActividadesTable extends Migration
             $table->string( 'logo');
             $table->integer( 'tipo_de_actividad_id')->unsigned();
             $table->foreign( 'tipo_de_actividad_id')->references('id')->on('tipos_de_actividad');
+            $table->integer( 'estatus')->default(1);
             $table->dateTime(   'fecha_de_creacion');
             $table->dateTime(   'fecha_de_actualizacion')->nullable();
         });

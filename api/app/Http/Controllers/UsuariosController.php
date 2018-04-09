@@ -14,6 +14,10 @@ use  App\Instituciones;
 use  App\Usuarioactividad;
 use  App\Pesos;
 use  App\Tallas;
+use  App\Tiposusuario;
+use  App\Tipossangre;
+use  App\Tiposinstitucion;
+use  App\Actividades;
 use  Validator;
 use  File;
 
@@ -35,8 +39,16 @@ class UsuariosController extends Controller  {
   }
 
 
-  public  function complete() {
-    $respuesta = User::with(  $this->withAll)->get();
+  public  function  complete() {
+    $respuesta   =  User::with(  $this->withAll)->get();
+    return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
+  }
+
+  public  function  registerInfo()  {
+    $respuesta['actividades']  =  Actividades::with(  'tipo')->where(  'estatus',  1)->get();
+    $respuesta['tipos_de_usuario']  =  Tiposusuario::where(  'estatus',  1)->get();
+    $respuesta['tipos_de_sangre']  =  Tipossangre::where(  'estatus',  1)->get();
+    $respuesta['tipos_de_institucion']  =  Tiposinstitucion::where(  'estatus',  1)->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
