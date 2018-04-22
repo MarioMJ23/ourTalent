@@ -32,6 +32,7 @@
           <ion-row class=""  text-wrap>
             <ion-col col-12>
               <ion-list>
+                <!-- Email -->
                 <ion-item class="row white-background" no-lines>
                   <ion-label class="label-input">Email:</ion-label>
                 </ion-item>
@@ -43,6 +44,7 @@
                   <p>Por favor ingresa tu <strong>Email</strong></p>
                 </ion-item>
 
+                <!-- Contraseña -->
                 <ion-item class="row white-background" no-lines>
                   <ion-label class="label-input">Contraseña:</ion-label>
                 </ion-item>
@@ -54,6 +56,7 @@
                   <p>Por favor ingresa tu <strong>Contraseña</strong></p>
                 </ion-item>
 
+                <!-- Confirmación de contraseña -->
                 <ion-item class="row white-background" no-lines>
                   <ion-label class="label-input">Confirmar contraseña:</ion-label>
                 </ion-item>
@@ -65,16 +68,37 @@
                   <p>Por favor verifica tu <strong>Contraseña y CONFIRMALA</strong></p>
                 </ion-item>
 
+                <!-- Teléfono -->
                 <ion-item class="row white-background" no-lines>
                   <ion-label class="label-input">Teléfono:</ion-label>
                 </ion-item>
                 <ion-item class="item item-input row" no-lines>
-                  <ion-input  placeholder="Ingresa tu teléfono aquí" type="tel" class="white-color" name="telefono" formControlName="telefono" [(ngModel)]="nuevoUsuario.telefono" >
+                  <ion-input  placeholder="Ingresa tu teléfono aquí" type="tel" class="white-color" name="telefono" formControlName="telefono" max="10" [(ngModel)]="nuevoUsuario.telefono" >
                   </ion-input>
                 </ion-item>
-                <ion-item class="white-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
+                <ion-item class="white-background" text-wrap *ngIf="telefono.hasError('required')  &&  telefono.touched" no-lines>
                   <p>Por favor ingresa un  <strong>número telefoníco</strong> valido</p>
                 </ion-item>
+
+                <!-- Pais -->
+                <ion-item class="row white-background" no-lines>
+                  <ion-label class="label-input">Pais:</ion-label>
+                </ion-item>
+                <ion-item class="select-input" no-lines>
+                  <ion-label  *ngIf="nuevoUsuario.pais_id == null">Pais</ion-label>
+                  <ion-label  *ngIf="nuevoUsuario.pais_id != null">
+                    {{  utils.obtenerValorDeCatalogo(  catalogoDeTiposDeSangre,  nuevoUsuario.pais_id) }}
+                  </ion-label>
+                  <ion-select [(ngModel)]="nuevoUsuario.pais_id" formControlName="pais_id" name="pais_id">
+                    <ion-option  *ngFor="let itemTS of catalogoDeTiposDeSangre"  value="{{ itemTS.id }}">
+                      {{itemTS.tipo}}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item class="white-background" text-wrap *ngIf="pais_id.hasError('required')  &&  pais_id.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                  <p>Por favor selecciona un <strong>país</strong></p>
+                </ion-item>
+              </ion-col>
 
               </ion-list>
             </ion-col>
@@ -93,29 +117,162 @@
                 <ion-row>
                   <ion-col col-12>
                     <ion-list>
-                      <ion-item>sadasdsadasdas</ion-item>
-                    <!-- 
-                      <form>
-                        <ion-item class="row white-background" no-lines>
-                          <ion-label class="label-input">Email:</ion-label>
-                        </ion-item>
-                        <ion-item class="item item-input row" no-lines>
-                          <ion-input  placeholder="Ingresa tu email aquí" type="email" class="white-color" name="email" formControlName="email" [(ngModel)]="nuevoUsuario.email" >
-                          </ion-input>
-                        </ion-item>
-                        <ion-item class="white-background" text-wrap *ngIf="email.hasError('required')  &&  email.touched" no-lines>
-                          <p>Por favor ingresa tu <strong>Email</strong></p>
-                        </ion-item>
+                      <ion-item no-lines text-center class="dark-green-color"><strong>Usuario</strong></ion-item>
+                      <form name="usuarioForm" [formGroup]="usuarioForm">
+                        <ion-col col-12>
+                          <!-- Nombre(s) -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Nombre(s):</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row" no-lines>
+                            <ion-input  placeholder="Ingresa tu nombre(s) aquí" type="text" class="white-color" name="nombre" formControlName="nombre" [(ngModel)]="nuevoUsuario.nombre" >
+                            </ion-input>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="nombre.hasError('required')  &&  nombre.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                            <p>Por favor ingresa tu <strong>nombre(s)</strong></p>
+                          </ion-item>
+
+                          <!-- Apellido Paterno -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Apellido paterno:</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row" no-lines>
+                            <ion-input  placeholder="Ingresa tu apellido paterno aquí" type="text" class="white-color" name="apellido_paterno" formControlName="apellido_paterno" [(ngModel)]="nuevoUsuario.apellido_paterno" >
+                            </ion-input>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="apellido_paterno.hasError('required')  &&  apellido_paterno.touched && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                            <p>Por favor ingresa tu <strong>apellido paterno(s)</strong></p>
+                          </ion-item>
+
+                          <!-- Apellido Materno -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Apellido materno:</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row" no-lines>
+                            <ion-input  placeholder="Ingresa tu apellido materno aquí" type="text" class="white-color" name="apellido_materno" formControlName="apellido_materno" [(ngModel)]="nuevoUsuario.apellido_materno" >
+                            </ion-input>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="apellido_materno.hasError('required')  &&  apellido_materno.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                            <p>Por favor ingresa tu <strong>apellido materno</strong></p>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col col-6>
+                          <!-- Genero -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Género:</ion-label>
+                          </ion-item>
+                          <ion-item class="select-input" no-lines>
+                            <ion-label  *ngIf="nuevoUsuario.genero == null">Género</ion-label>
+                            <ion-label  *ngIf="nuevoUsuario.genero == 1">Masculino</ion-label>
+                            <ion-label  *ngIf="nuevoUsuario.genero == 2">Femenino</ion-label>
+                            <ion-select [(ngModel)]="nuevoUsuario.genero" formControlName="genero" name="genero">
+                              <ion-option value="1">Masculino</ion-option>
+                              <ion-option value="2">Femenino</ion-option>
+                            </ion-select>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="genero.hasError('required')  &&  genero.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                            <p>Por favor selecciona un <strong>genero</strong></p>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col col-6>
+                          <!-- Tipo de sangre -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Tipo De Sangre:</ion-label>
+                          </ion-item>
+                          <ion-item class="select-input" no-lines>
+                            <ion-label  *ngIf="nuevoUsuario.tipo_de_sangre_id == null">Tipo De Sangre</ion-label>
+                            <ion-label  *ngIf="nuevoUsuario.tipo_de_sangre_id != null">
+                              {{  utils.obtenerValorDeCatalogo(  catalogoDeTiposDeSangre,  nuevoUsuario.tipo_de_sangre_id) }}
+                            </ion-label>
+                            <ion-select [(ngModel)]="nuevoUsuario.tipo_de_sangre_id" formControlName="tipo_de_sangre_id" name="tipo_de_sangre_id">
+                              <ion-option  *ngFor="let itemTS of catalogoDeTiposDeSangre"  value="{{ itemTS.id }}">
+                                {{itemTS.tipo}}
+                              </ion-option>
+                            </ion-select>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="tipo_de_sangre_id.hasError('required')  &&  tipo_de_sangre_id.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                            <p>Por favor selecciona un <strong>tipo de sangre</strong></p>
+                          </ion-item>
+                        </ion-col>
+
+                        <ion-col col-12>
+                          <!-- Fecha de nacimiento -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Fecha de nacimiento</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row">
+                            <ion-datetime [min]="datePickerConfig.fecha_de_nacimiento.min"
+                                          [max]="datePickerConfig.fecha_de_nacimiento.max" 
+                                          [displayFormat]="datePickerConfig.displayFormat" 
+                                          [pickerFormat]="datePickerConfig.pickerFormat" 
+                                          [(ngModel)]="nuevoUsuario.fecha_de_nacimiento" 
+                                          placeholder="dd-mm-yyyy"  
+                                          formControlName="fecha_de_nacimiento"
+                                          text-end >
+                            </ion-datetime>
+                          </ion-item>
+                          <ion-item no-lines  text-justify text-wrap *ngIf="!usuarioForm.controls['fecha_de_nacimiento'].valid && fecha_de_nacimiento.touched">
+                            <p class="alert-form-error">Debe ingresar fecha de nacimiento. Debe ser en una fecha valida solo usuarios de 4 a 30 años.</p>
+                          </ion-item>
+                        </ion-col>
                       </form>
-                     -->
-                     </ion-list>
+                    </ion-list>
                   </ion-col>
                 </ion-row>
               </ion-grid>
               <ion-grid *ngSwitchCase="2">
                 <ion-row>
                   <ion-col  col-12>
-                    <ion-item>ddddddddddddd</ion-item>
+                    <ion-list>
+                      <ion-item no-lines text-center class="dark-green-color"><strong>Institución</strong></ion-item>
+                      <form name="institucionForm" [formGroup]="institucionForm">
+                        <ion-col col-12>
+                          <!-- Nombre  -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Nombre de la Institución:</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row" no-lines>
+                            <ion-input  placeholder="Ingresa el nomre de la institución" type="text" class="white-color" name="institucion_nombre" formControlName="nombre" 
+                            [(ngModel)]="nuevoUsuario.institucion.nombre" >
+                            </ion-input>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="institucion_nombre.hasError('required')  &&  institucion_nombre.touched  && nuevoUsuario.tipo_de_usuario_id == 2" no-lines>
+                            <p>Por favor ingresa el <strong>nombre de la institución</strong></p>
+                          </ion-item>
+
+                          <!-- Nombre Corto -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Nombre Corto:</ion-label>
+                          </ion-item>
+                          <ion-item class="item item-input row" no-lines>
+                            <ion-input  placeholder="Ingresa un nombre corto o abreviación" type="text" class="white-color" name="nombre_corto" formControlName="nombre_corto" [(ngModel)]="nuevoUsuario.institucion.nombre_corto" >
+                            </ion-input>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="nombre_corto.hasError('required')  &&  nombre_corto.touched && nuevoUsuario.tipo_de_usuario_id == 2" no-lines>
+                            <p>Por favor ingresa un <strong>nombre corto o abreviacion</strong> para tu institución</p>
+                          </ion-item>
+
+                          <!-- Tipo de sangre -->
+                          <ion-item class="row white-background" no-lines>
+                            <ion-label class="label-input">Tipo De Institución:</ion-label>
+                          </ion-item>
+                          <ion-item class="select-input" no-lines>
+                            <ion-label  *ngIf="nuevoUsuario.institucion.tipo_de_institucion_id == null">Tipo De Institución</ion-label>
+                            <ion-label  *ngIf="nuevoUsuario.institucion.tipo_de_institucion_id != null">
+                              {{  utils.obtenerValorDeCatalogo(  catalogoDeTiposDeInstitucion,  nuevoUsuario.institucion.tipo_de_institucion_id) }}
+                            </ion-label>
+                            <ion-select [(ngModel)]="nuevoUsuario.institucion.tipo_de_institucion_id" formControlName="tipo_de_institucion_id" name="tipo_de_institucion_id">
+                              <ion-option  *ngFor="let itemTI of catalogoDeTiposDeInstitucion"  value="{{ itemTI.id }}">
+                                {{itemTI.tipo}}
+                              </ion-option>
+                            </ion-select>
+                          </ion-item>
+                          <ion-item class="white-background" text-wrap *ngIf="tipo_de_institucion_id.hasError('required')  &&  tipo_de_institucion_id.touched  && nuevoUsuario.tipo_de_usuario_id == 2" no-lines>
+                            <p>Por favor selecciona un <strong>tipo de institución</strong></p>
+                          </ion-item>
+                        </ion-col>
+                      </form>
+                    </ion-list>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -128,7 +285,7 @@
       <ion-row>
         <ion-col col-6>
           <!-- [disabled]=""  (click)=""  -->
-          <button  type="ng-submit"  ion-button full  [disabled]="!registerForm.valid"  (click)="doRegister();"  class="crear-button {{classStyles.classButton}}">
+          <button  type="ng-submit"  ion-button full  [disabled]="!registerForm.valid  || (!usuarioForm.valid && nuevoUsuario.tipo_de_usuario_id == 3)  || ( !institucionForm.valid && nuevoUsuario.tipo_de_usuario_id == 2)"  (click)="doRegister();"  class="crear-button {{classStyles.classButton}}">
             Crear cuenta
           </button>
         </ion-col>

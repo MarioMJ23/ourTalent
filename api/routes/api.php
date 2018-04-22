@@ -14,10 +14,9 @@ use Illuminate\Http\Request;
 */
 Route::post(  'oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 Route::get(  'informacion_registrar',  'UsuariosController@registerInfo');
-/*
-Route::get(  '/catalogo/tipos_de_usuario',  'TiposUsuarioController@index');
-Route::get(  '/catalogo/actividades',  'ActividadesController@index');
-*/
+Route::get(  '/estados/pais/{pais_id}',  'EstadosController@showPaisID');
+Route::get(  '/ciudades/estado/{estado_id}',  'CiudadesController@showEstadoID');
+
 Route::post(  '/usuarios/crear',  'UsuariosController@store');
 Route::middleware(['auth:api', 'estatus'])->group(function () {
 	Route::get(  '/usuarios/miperfil',	'UsuariosController@miPerfil');
@@ -45,14 +44,14 @@ Route::middleware(['auth:api', 'estatus'])->group(function () {
 											[	'only'	=>	[	'index',	'show',  'store',	'update',	'destroy']]);
 	
 	Route::get(  '/ciudades/complete',	'CiudadesController@complete');
-	Route::get(  '/ciudades/estado/{estado_id}',  'CiudadesController@showEstadoID');
+//	Route::get(  '/ciudades/estado/{estado_id}',  'CiudadesController@showEstadoID');
 	Route::post(  '/ciudades/habilitar/{id}',  'CiudadesController@habilitar');
 	Route::post(  '/ciudades/deshabilitar/{id}',  'CiudadesController@deshabilitar');
 	Route::resource(	'ciudades',	'CiudadesController',
 											[	'only'	=>	[	'index',	'show',  'store',	'update',	'destroy']]);
 	
 	Route::get(  '/estados/complete',	'EstadosController@complete');
-	Route::get(  '/estados/pais/{pais_id}',  'EstadosController@showPaisID');
+	//Route::get(  '/estados/pais/{pais_id}',  'EstadosController@showPaisID');
 	Route::post(  '/estados/habilitar/{id}',  'EstadosController@habilitar');
 	Route::post(  '/estados/deshabilitar/{id}',  'EstadosController@deshabilitar');
 	Route::resource(	'estados',	'EstadosController',

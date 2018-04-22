@@ -33,6 +33,9 @@ export class RegisterPage {
     confirmarPassword: [  '', Validators.compose([  Validators.required])],
     telefono:  [ '', Validators.compose([  Validators.required,  Validators.minLength(10),  Validators.maxLength(15)])],
     tipo_de_usuario_id:  [  3,  Validators.compose([Validators.required])],
+    pais_id:  [  null, Validators.compose(  [  Validators.required])],
+    estado_id:  [  null, Validators.compose(  [  Validators.minLength(1)])],
+    ciudad_id:  [  null, Validators.compose([  Validators.minLength(1)])]
   };
 
   private  validacionesUsuario:  any  =  {
@@ -62,8 +65,8 @@ export class RegisterPage {
   public  actividades:  AbstractControl;
   public  tipo_de_usuario_id:  AbstractControl;
   public  institucion_nombre:  AbstractControl;
-  public  institucion_nombre_corto:  AbstractControl;
-  public  institucion_tipo:  AbstractControl;
+  public  nombre_corto:  AbstractControl;
+  public  tipo_de_institucion_id:  AbstractControl;
   public  nombre:  AbstractControl;
   public  apellido_paterno:  AbstractControl;
   public  apellido_materno:  AbstractControl;
@@ -90,19 +93,27 @@ export class RegisterPage {
     genero:  null,
     fecha_de_nacimiento:  null,
     apellido_paterno:  null,
-    apellido_materno:  null
+    apellido_materno:  null,
+    pais_id: null,
+    estado_id: null,
+    ciudad_id: null,
   };
+
   public  usuario:  any  =  {};
   public  classStyles:  any;
   public  catalogoDeActividades:  any;
   public  catalogoDeTiposDeUsuario:  any;
   public  catalogoDeTiposDeSangre:  any;
-  public  catalogoDeTiposDeInstituciom:  any;
+  public  catalogoDeTiposDeInstitucion:  any;
+  public  datePickerConfig: any = { 
+                  fecha_de_nacimiento:  { min:  '', max:  ''},
+                  displayFormat:  'DD-MM-YYYY',
+                  pickerFormat: 'DD/MM/YYYY'  };
 
   constructor(  private  navCtrl:  NavController,
                 private  restProvider: RestProvider,
                 private  formBuilder:  FormBuilder,
-                private  utils:  Utils,
+                public  utils:  Utils,
                 private  statusBar:  StatusBar,
                 private  splashScreen:  SplashScreen,
                 private  platform:  Platform,
@@ -110,20 +121,28 @@ export class RegisterPage {
     this.classStyles  =  this.utils.classStyles;
     this.initFormularioGeneral();
     this.obtenerCatalogos();
-  }
 
-  ngBeforeViewInit()  {
+    /* Establecer configuración de DatePicker */
+    let today = new Date();
+    let year  = (today.toISOString()).split('-')[0];
+    //today.setDate(  today.getDate() - (364 * 4));
+    let fecha_minima_para_usuarios = today.toISOString().replace(  year, (parseInt(  year) - 4).toString());
+    this.datePickerConfig.fecha_de_nacimiento.max = fecha_minima_para_usuarios;
+    this.datePickerConfig.fecha_de_nacimiento.min  = this.datePickerConfig.fecha_de_nacimiento.max.replace(  (  parseInt( year) - 4), (parseInt(year) - 30));
     this.platform.ready().then(  ()  =>  {
       this.statusBar.backgroundColorByHexString(  '#c0c0c0');
       this.splashScreen.show();
     });
   }
 
+  ngBeforeViewInit()  {
+  }
+
   ngAfterViewInit()  {
     this.platform.ready().then(  () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      //this.splashScreen.hide();
+      this.splashScreen.hide();
     });
   };
 
@@ -138,7 +157,6 @@ export class RegisterPage {
   segmentChanged(  obj) {
     this.chRef.reattach();
     this.nuevoUsuario.tipo_de_usuario_id  =  obj.id;
-    console.log(  this.nuevoUsuario.tipo_de_usuario_id);
   }
 
   private  obtenerCatalogos()  {
@@ -160,11 +178,11 @@ export class RegisterPage {
     this.catalogoDeActividades  =  datosRespuesta.respuesta[  'actividades'];
     this.catalogoDeTiposDeUsuario  =  datosRespuesta.respuesta[  'tipos_de_usuario'].reverse();
     this.catalogoDeTiposDeSangre  =  datosRespuesta.respuesta[  'tipos_de_sangre'];
-    this.catalogoDeTiposDeInstituciom  =  datosRespuesta.respuesta[  'tipos_de_institucion'];
+    this.catalogoDeTiposDeInstitucion  =  datosRespuesta.respuesta[  'tipos_de_institucion'];
     this.initFormularioGeneral();
     this.initFormularioUsuario();
     this.initFormularioInstitucion();
-    this.tipo_de_usuario_id  =  3  //  abriendo el segment por default 
+    this.nuevoUsuario.tipo_de_usuario_id  =  3  //  abriendo el segment por default 
   };
 
   private  initFormularioGeneral()  {
@@ -178,7 +196,7 @@ export class RegisterPage {
   }
 
   private  initFormularioUsuario()  {
-    this.usuarioForm  =  this.usuarioForm.group(  this.validacionesUsuario);
+    this.usuarioForm  =  this.formBuilder.group(  this.validacionesUsuario);
 
     this.nombre  =  this.usuarioForm.controls[  'nombre'];
     this.apellido_paterno  =  this.usuarioForm.controls[  'apellido_paterno'];
@@ -189,10 +207,10 @@ export class RegisterPage {
   }
 
   private  initFormularioInstitucion()  {
-    this.institucionForm  =  this.institucionForm.group(  this.validacionesInstitucion);
+    this.institucionForm  =  this.formBuilder.group(  this.validacionesInstitucion);
 
     this.institucion_nombre  =  this.institucionForm.controls[  'nombre'];
-    this.institucion_nombre_corto  =  this.institucionForm.controls[  'nombre_corto'];
-    this.institucion_tipo  =  this.institucionForm.controls[  'tipo_de_institucion_id'];
+    this.nombre_corto  =  this.institucionForm.controls[  'nombre_corto'];
+    this.tipo_de_institucion_id  =  this.institucionForm.controls[  'tipo_de_institucion_id'];
   }
 }

@@ -14,6 +14,9 @@ use  App\Instituciones;
 use  App\Usuarioactividad;
 use  App\Pesos;
 use  App\Tallas;
+use  App\Paises;
+use  App\Estados;
+use  App\Ciudades;
 use  App\Tiposusuario;
 use  App\Tipossangre;
 use  App\Tiposinstitucion;
@@ -45,6 +48,9 @@ class UsuariosController extends Controller  {
   }
 
   public  function  registerInfo()  {
+    $respuesta['paises']  =  Paises::where( 'estatus',  1)->get();
+    $respuesta['estados']  =  Estados::where( 'estatus',  1)->get();
+    $respuesta['ciudades']  =  Ciudades::where( 'estatus',  1)->get();
     $respuesta['actividades']  =  Actividades::with(  'tipo')->where(  'estatus',  1)->get();
     $respuesta['tipos_de_usuario']  =  Tiposusuario::where(  'estatus',  1)->get();
     $respuesta['tipos_de_sangre']  =  Tipossangre::where(  'estatus',  1)->get();

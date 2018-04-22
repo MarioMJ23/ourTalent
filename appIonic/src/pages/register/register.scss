@@ -76,4 +76,18 @@ page-register {
   input  {
     color: $colorInput;
   }
+
+  .select-input {
+    border: solid !important;
+    border-width: 2px !important;
+    border-radius: 5px !important;
+    margin: 0px 0px 0px 0px !important;
+    padding:  -20px 2px -20px 2px !important;
+    font-weight: bold !important;
+    width: 99%;
+    font-size: 14px !important;
+    border-color: $borderInputColor;
+    color:  $colorInput ;
+    background-color:   $backgroundInput; 
+  }
 }

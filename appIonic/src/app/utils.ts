@@ -81,6 +81,13 @@ export  class  Utils  {
     };
   };
 
+  obtenerValorDeCatalogo(  catalogo,  selected,  valor  =  'tipo')  {
+    for(  let  indexCatalogo  in  catalogo)  {
+      if (  catalogo[  indexCatalogo].id  ==  selected)
+        return  catalogo[  indexCatalogo][valor];
+    }
+  }
+
   delegarPaginaDeInicio(  paginas,  usuario: any = null) {
     usuario  = usuario  ||  this.consultarStorage(  this.llavesStorage);
     let tipo_usuario  =  usuario.tipo  ?  usuario.tipo.id  :  false;
