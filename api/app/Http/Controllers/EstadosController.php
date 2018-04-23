@@ -25,14 +25,14 @@ class EstadosController extends Controller  {
    */
   public function index()  {
     ini_set('memory_limit', '-1');
-    $respuesta = Estados::with(  $this->withAll)->where(  'estatus',  1)->get();
+    $respuesta = Estados::with(  $this->withAll)->orderBy('estado')->where(  'estatus',  1)->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
 
   public function complete()  {
     ini_set('memory_limit', '-1');
-    $respuesta = Estados::with(  $this->withAll)->get();
+    $respuesta = Estados::with(  $this->withAll)->orderBy('estado')->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
@@ -95,12 +95,12 @@ class EstadosController extends Controller  {
    * @return \Illuminate\Http\Response
    */
   public function show($id)  {
-    $respuesta  =  Estados::with(  $this->withAll)->find(  $id);
+    $respuesta  =  Estados::with(  $this->withAll)->orderBy('estado')->find(  $id);
     return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
   public function showPaisID($pais_id)  {
-    $respuesta  =  Estados::with(  $this->withAll)->where(  'pais_id',  $pais_id)->get();
+    $respuesta  =  Estados::with(  $this->withAll)->orderBy('estado')->where(  'pais_id',  $pais_id)->get();
     return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 

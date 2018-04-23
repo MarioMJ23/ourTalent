@@ -48,13 +48,13 @@ class UsuariosController extends Controller  {
   }
 
   public  function  registerInfo()  {
-    $respuesta['paises']  =  Paises::where( 'estatus',  1)->get();
-    $respuesta['estados']  =  Estados::where( 'estatus',  1)->get();
-    $respuesta['ciudades']  =  Ciudades::where( 'estatus',  1)->get();
-    $respuesta['actividades']  =  Actividades::with(  'tipo')->where(  'estatus',  1)->get();
-    $respuesta['tipos_de_usuario']  =  Tiposusuario::where(  'estatus',  1)->get();
-    $respuesta['tipos_de_sangre']  =  Tipossangre::where(  'estatus',  1)->get();
-    $respuesta['tipos_de_institucion']  =  Tiposinstitucion::where(  'estatus',  1)->get();
+    $respuesta['paises']  =  Paises::orderBy('pais')->where( 'estatus',  1)->get();
+    $respuesta['estados']  =  Estados::orderBy('estado')->where( 'estatus',  1)->get();
+    $respuesta['ciudades']  =  Ciudades::orderBy('ciudad')->where( 'estatus',  1)->get();
+    $respuesta['actividades']  =  Actividades::orderBy('id')->with(  'tipo')->where(  'estatus',  1)->get();
+    $respuesta['tipos_de_usuario']  =  Tiposusuario::orderBy('id')->where(  'estatus',  1)->get();
+    $respuesta['tipos_de_sangre']  =  Tipossangre::orderBy('id')->where(  'estatus',  1)->get();
+    $respuesta['tipos_de_institucion']  =  Tiposinstitucion::orderBy('id')->where(  'estatus',  1)->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 

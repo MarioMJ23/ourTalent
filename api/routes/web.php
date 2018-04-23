@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return 	array('api Ourtalent');
+	return view('index');
 });

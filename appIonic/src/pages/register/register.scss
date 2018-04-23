@@ -90,4 +90,11 @@ page-register {
     color:  $colorInput ;
     background-color:   $backgroundInput; 
   }
+
+  .segment-selected  {
+    font-weight:  bold !important;
+    border-bottom-color: $darkgreenColorBshadow !important;
+    color:  $darkgreenColorBshadow;
+    opacity: 1  !important;
+  }
 }

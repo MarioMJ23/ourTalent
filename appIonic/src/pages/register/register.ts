@@ -72,6 +72,9 @@ export class RegisterPage {
   public  apellido_materno:  AbstractControl;
   public  tipo_de_sangre_id:  AbstractControl;
   public  fecha_de_nacimiento:  AbstractControl;
+  public  pais_id:  AbstractControl;
+  public  estado_id:  AbstractControl;
+  public  ciudad_id:  AbstractControl;
   public  genero:  AbstractControl;
 
   public  nuevoUsuario:  any  =  {
@@ -101,10 +104,15 @@ export class RegisterPage {
 
   public  usuario:  any  =  {};
   public  classStyles:  any;
+
   public  catalogoDeActividades:  any;
   public  catalogoDeTiposDeUsuario:  any;
   public  catalogoDeTiposDeSangre:  any;
   public  catalogoDeTiposDeInstitucion:  any;
+  public  catalogoDePaises:  any;
+  public  catalogoDeEstados:  any;
+  public  catalogoDeCiudades:  any;
+
   public  datePickerConfig: any = { 
                   fecha_de_nacimiento:  { min:  '', max:  ''},
                   displayFormat:  'DD-MM-YYYY',
@@ -150,13 +158,60 @@ export class RegisterPage {
 //    console.log('ionViewDidLoad RegisterPage');
   }
 
-  goToLogin()  {
+  irLogin()  {
     this.navCtrl.setRoot(  LoginPage);
   };
 
   segmentChanged(  obj) {
     this.chRef.reattach();
     this.nuevoUsuario.tipo_de_usuario_id  =  obj.id;
+  };
+
+  tipoDeUsuarioSeleccionado(  tipo  =  3)  {    
+    if (  this.nuevoUsuario.tipo_de_usuario_id  ==  tipo)
+      return  'activated segment-selected';
+    else
+      return  '';
+  }
+
+  actualizarEstados()  {
+    this.nuevoUsuario.pais_id  =  null;
+
+    if (  this.nuevoUsuario.pais_id)
+      this.restProvider.obtenerEstadosPorPais(  this.nuevoUsuario.pais_id).subscribe(
+        (  respuesta)  =>  {
+          this.procesarEstadosRespuesta(  respuesta);
+        },
+        (  error)  =>  {
+          this.utils.delegarAlertaDeRespuestaErronea(  error);
+        }
+      );
+  };
+
+
+  actualizarCiudades()  {
+    this.nuevoUsuario.estado_id  =  null;
+    if (  this.nuevoUsuario.estado_id)
+      this.restProvider.obtenerCiudadesPorEstado(  this.nuevoUsuario.estado_id).subscribe(
+        (  respuesta)  =>  {
+          this.procesarCiudadesRespuesta(  respuesta);
+        },
+        (  error)  =>  {
+          this.utils.delegarAlertaDeRespuestaErronea(  error);
+        }
+      );
+  };
+
+  irSiguiente()  {
+    console.log(  this.nuevoUsuario);
+  }
+
+  private  procesarEstadosRespuesta(  estadosObjeto)  {
+    this.catalogoDeEstados  =  estadosObjeto.respuesta;
+  };
+
+  private  procesarCiudadesRespuesta(  ciudadesObjeto)  {
+    this.catalogoDeCiudades  =  ciudadesObjeto.respuesta;
   }
 
   private  obtenerCatalogos()  {
@@ -179,6 +234,9 @@ export class RegisterPage {
     this.catalogoDeTiposDeUsuario  =  datosRespuesta.respuesta[  'tipos_de_usuario'].reverse();
     this.catalogoDeTiposDeSangre  =  datosRespuesta.respuesta[  'tipos_de_sangre'];
     this.catalogoDeTiposDeInstitucion  =  datosRespuesta.respuesta[  'tipos_de_institucion'];
+    this.catalogoDePaises  =  datosRespuesta.respuesta[  'paises'];
+    this.catalogoDeEstados  =  datosRespuesta.respuesta[  'estados'];
+    this.catalogoDeCiudades  =  datosRespuesta.respuesta[  'ciudades'];
     this.initFormularioGeneral();
     this.initFormularioUsuario();
     this.initFormularioInstitucion();
@@ -193,6 +251,9 @@ export class RegisterPage {
     this.telefono = this.registerForm.controls['telefono'];
     this.tipo_de_usuario_id = this.registerForm.controls['tipo_de_usuario_id'];
     this.confirmarPassword = this.registerForm.controls['confirmarPassword'];
+    this.pais_id  =  this.registerForm.controls[  'pais_id'];
+    this.estado_id  =  this.registerForm.controls[  'estado_id'];
+    this.ciudad_id  =  this.registerForm.controls[  'ciudad_id'];
   }
 
   private  initFormularioUsuario()  {

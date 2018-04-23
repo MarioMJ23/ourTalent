@@ -82,23 +82,68 @@
 
                 <!-- Pais -->
                 <ion-item class="row white-background" no-lines>
-                  <ion-label class="label-input">Pais:</ion-label>
+                  <ion-label class="label-input">País:</ion-label>
                 </ion-item>
                 <ion-item class="select-input" no-lines>
-                  <ion-label  *ngIf="nuevoUsuario.pais_id == null">Pais</ion-label>
+                  <ion-label  *ngIf="nuevoUsuario.pais_id == null">País</ion-label>
                   <ion-label  *ngIf="nuevoUsuario.pais_id != null">
-                    {{  utils.obtenerValorDeCatalogo(  catalogoDeTiposDeSangre,  nuevoUsuario.pais_id) }}
+                    {{  utils.obtenerValorDeCatalogo(  catalogoDePaises,  nuevoUsuario.pais_id, "pais")  |  uppercase}}
                   </ion-label>
-                  <ion-select [(ngModel)]="nuevoUsuario.pais_id" formControlName="pais_id" name="pais_id">
-                    <ion-option  *ngFor="let itemTS of catalogoDeTiposDeSangre"  value="{{ itemTS.id }}">
-                      {{itemTS.tipo}}
+                  <ion-select [(ngModel)]="nuevoUsuario.pais_id" 
+                              formControlName="pais_id" name="pais_id"  
+                              (ngModelChange)="actualizarEstados()" >
+                    <ion-option  *ngFor="let itemP of catalogoDePaises"  value="{{ itemP.id }}">
+                      {{itemP.pais  |  uppercase}}
                     </ion-option>
                   </ion-select>
                 </ion-item>
-                <ion-item class="white-background" text-wrap *ngIf="pais_id.hasError('required')  &&  pais_id.touched  && nuevoUsuario.tipo_de_usuario_id == 3" no-lines>
+                <ion-item class="white-background" text-wrap *ngIf="pais_id.hasError('required')  &&  pais_id.touched" no-lines>
                   <p>Por favor selecciona un <strong>país</strong></p>
                 </ion-item>
-              </ion-col>
+
+                <!-- Estado -->
+                <div no-lines *ngIf="nuevoUsuario.pais_id  ==  70  || nuevoUsuario.pais_id  == 147">
+                  <ion-item class="row white-background" no-lines>
+                    <ion-label class="label-input">Estado:</ion-label>
+                  </ion-item>
+                  <ion-item class="select-input" no-lines>
+                    <ion-label  *ngIf="nuevoUsuario.estado_id == null">Estado</ion-label>
+                    <ion-label  *ngIf="nuevoUsuario.estado_id != null">
+                      {{  utils.obtenerValorDeCatalogo(  catalogoDeEstados,  nuevoUsuario.estado_id, "estado")  |  uppercase }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="nuevoUsuario.estado_id" 
+                                formControlName="estado_id" name="estado_id" 
+                                (ngModelChange)="actualizarCiudades()">
+                      <ion-option  *ngFor="let itemE of catalogoDeEstados"  value="{{ itemE.id }}">
+                        {{  itemE.estado  |  uppercase}}
+                      </ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item class="white-background" text-wrap *ngIf="estado_id.hasError('required')  &&  estado_id.touched" no-lines>
+                    <p>Por favor selecciona un <strong>país</strong></p>
+                  </ion-item>
+                </div>
+
+                <!-- Ciudad -->
+                <div no-lines *ngIf="(nuevoUsuario.pais_id  ==  70  || nuevoUsuario.pais_id  == 147) && (nuevoUsuario.estado_id != null) ">
+                  <ion-item class="row white-background" no-lines>
+                    <ion-label class="label-input">Ciudad:</ion-label>
+                  </ion-item>
+                  <ion-item class="select-input" no-lines>
+                    <ion-label  *ngIf="nuevoUsuario.ciudad_id == null">Ciudad</ion-label>
+                    <ion-label  *ngIf="nuevoUsuario.ciudad_id != null">
+                      {{  utils.obtenerValorDeCatalogo(  catalogoDeCiudades,  nuevoUsuario.ciudad_id, "ciudad")  |  uppercase}}
+                    </ion-label>
+                    <ion-select [(ngModel)]="nuevoUsuario.ciudad_id" formControlName="ciudad_id" name="ciudad_id">
+                      <ion-option  *ngFor="let itemC of catalogoDeCiudades"  value="{{ itemC.id }}">
+                        {{itemC.ciudad  |  uppercase}}
+                      </ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item class="white-background" text-wrap *ngIf="ciudad_id.hasError('required')  &&  ciudad_id.touched" no-lines>
+                    <p>Por favor selecciona un <strong>país</strong></p>
+                  </ion-item>
+                </div>
 
               </ion-list>
             </ion-col>
@@ -108,7 +153,10 @@
         <ion-row>
           <ion-col col-12>
             <ion-segment formControlName="tipo_de_usuario_id"  [(ngModel)]="nuevoUsuario.tipo_de_usuario_id" (ionChange)="segmentChanged($event)" color="registerColor"  class="white-background dark-green-color">
-              <ion-segment-button  *ngFor="let item of catalogoDeTiposDeUsuario"  value="{{ item.id }}" (click)="segmentChanged( item);">
+              <ion-segment-button  *ngFor="let item of catalogoDeTiposDeUsuario"  
+                                    value="{{ item.id }}"
+                                    (click)="segmentChanged( item);"
+                                    class="segment-button  {{ tipoDeUsuarioSeleccionado(item.id) }}" >
                 {{ item.tipo }}
               </ion-segment-button>
             </ion-segment>
@@ -157,6 +205,7 @@
                           </ion-item>
                         </ion-col>
                         <ion-col col-6>
+
                           <!-- Genero -->
                           <ion-item class="row white-background" no-lines>
                             <ion-label class="label-input">Género:</ion-label>
@@ -285,13 +334,13 @@
       <ion-row>
         <ion-col col-6>
           <!-- [disabled]=""  (click)=""  -->
-          <button  type="ng-submit"  ion-button full  [disabled]="!registerForm.valid  || (!usuarioForm.valid && nuevoUsuario.tipo_de_usuario_id == 3)  || ( !institucionForm.valid && nuevoUsuario.tipo_de_usuario_id == 2)"  (click)="doRegister();"  class="crear-button {{classStyles.classButton}}">
-            Crear cuenta
+          <button  type="ng-submit"  ion-button full  [disabled]="!registerForm.valid  || (!usuarioForm.valid && nuevoUsuario.tipo_de_usuario_id == 3)  || ( !institucionForm.valid && nuevoUsuario.tipo_de_usuario_id == 2)"  (click)="irSiguiente();"  class="crear-button {{classStyles.classButton}}">
+            Siguiente
           </button>
         </ion-col>
         <ion-col col-6>
           <!-- (click)="" -->
-          <button  ion-button full class="regresar-button {{classStyles.classButton}}" (click)="goToLogin()" >
+          <button  ion-button full class="regresar-button {{classStyles.classButton}}" (click)="irLogin()" >
             Regresar al Login
           </button>
         </ion-col>

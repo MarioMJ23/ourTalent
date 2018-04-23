@@ -26,14 +26,14 @@ class CiudadesController extends Controller  {
    */
   public function index()  {
     ini_set('memory_limit', '-1');
-    $respuesta = Ciudades::with(  $this->withAll)->where(  'estatus',  1)->get();
+    $respuesta = Ciudades::with(  $this->withAll)->orderBy('ciudad')->where(  'estatus',  1)->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
 
   public function complete()  {
     ini_set('memory_limit', '-1');
-    $respuesta = Ciudades::with(  $this->withAll)->get();
+    $respuesta = Ciudades::with(  $this->withAll)->orderBy('ciudad')->get();
     return response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
@@ -76,8 +76,8 @@ class CiudadesController extends Controller  {
           $ciudadID  =  $ciudad->id;
         });
 
-        $respuesta  =  Ciudades::with(  $this->withAll)->get();
-        $respuesta[  'creado']  =  Ciudades::with(  $this->withAll)->find(  $ciudadID);
+        $respuesta  =  Ciudades::with(  $this->withAll)->orderBy('ciudad')->get();
+        $respuesta[  'creado']  =  Ciudades::with(  $this->withAll)->orderBy('ciudad')->find(  $ciudadID);
         return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
       }  catch  (  \Illuminate\Database\QueryException $e) {
         return  response()->json([  'error'  =>  true,
@@ -98,12 +98,12 @@ class CiudadesController extends Controller  {
    * @return \Illuminate\Http\Response
    */
   public function show($id)  {
-    $respuesta  =  Ciudades::with(  $this->withAll)->find(  $id);
+    $respuesta  =  Ciudades::with(  $this->withAll)->orderBy('ciudad')->find(  $id);
     return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
   public function showEstadoID($estado_id)  {
-    $respuesta  =  Ciudades::with(  $this->withAll)->where(  'estado_id',  $estado_id)->get();
+    $respuesta  =  Ciudades::with(  $this->withAll)->orderBy('ciudad')->where(  'estado_id',  $estado_id)->get();
     return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
   }
 
@@ -153,7 +153,7 @@ class CiudadesController extends Controller  {
           $ciudad->save();
         });
 
-        $respuesta  =  Ciudades::with(  $this->withAll)->get();
+        $respuesta  =  Ciudades::with(  $this->withAll)->orderBy('ciudad')->get();
         return  response()->json([ 'error' =>  false,  'mensaje' =>  '', 'respuesta' =>  $respuesta],  200);
       }  catch  (  \Illuminate\Database\QueryException $e) {
         return  response()->json([  'error'  =>  true,
