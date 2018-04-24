@@ -600,6 +600,43 @@
 </div>
 </div>
 </header>
+<footer class="style-j5w5vwtu_footer style-j5w5vwtu" data-sitewidth="980" data-fixedposition="false" data-isrunninginmobile="false" data-state=" " id="SITE_FOOTER" style="bottom: auto; left: 0px; width: 980px; position: absolute; min-width: 980px; margin-left: 0px; top: 2049px; height: 52px;">
+	<div id="SITE_FOOTERscreenWidthBackground" class="style-j5w5vwtuscreenWidthBackground" style="width: 566px; left: 0px;">
+	<div class="style-j5w5vwtu_bg">
+</div>
+</div>
+<div id="SITE_FOOTERcenteredContent" class="style-j5w5vwtucenteredContent" style="width: 100%;">
+	<div id="SITE_FOOTERbg" class="style-j5w5vwtubg">
+</div>
+<div id="SITE_FOOTERinlineContent" class="style-j5w5vwtuinlineContent">
+	<div class="ImageButton_1" data-angle="180" data-state="supports_opacity transition_none   " id="comp-irp290xx" style="left: 465px; width: 50px; position: absolute; transform: rotate(180deg) translateZ(0px); top: 0px; height: 50px;">
+	<a href="https://a01274031.wixsite.com/misitio" target="_self" data-keep-roots="true" data-anchor="SCROLL_TO_TOP" title="" id="comp-irp290xxlink" class="ImageButton_1link" style="width: 50px; height: 50px;">
+	<div class="ImageButton_1_correct-positioning">
+	<div data-style="" class="ImageButton_1defaultImage" id="comp-irp290xxdefaultImage" style="position: relative; width: 50px; height: 50px;">
+	<img id="comp-irp290xxdefaultImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_f7a075b82a84470297070fc65e2508df~mv2.png/v1/fill/w_50,h_50,al_c/84770f_f7a075b82a84470297070fc65e2508df~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
+</div>
+</div>
+<div class="ImageButton_1_correct-positioning">
+	<div data-style="" class="ImageButton_1hoverImage" id="comp-irp290xxhoverImage" style="position: relative; width: 50px; height: 50px;">
+	<img id="comp-irp290xxhoverImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png/v1/fill/w_50,h_50,al_c/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
+</div>
+</div>
+<div class="ImageButton_1_correct-positioning">
+	<div data-style="" class="ImageButton_1activeImage" id="comp-irp290xxactiveImage" style="position: relative; width: 50px; height: 50px;">
+	<img id="comp-irp290xxactiveImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png/v1/fill/w_50,h_50,al_c/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
+</div>
+</div>
+</a>
+</div>
+<div data-packed="true" class="txtNew" id="comp-irp3uvk5" style="left: 101px; width: 331px; position: absolute; top: 16px;">
+	<p class="font_9" style="text-align:right;">© 2023 para&nbsp;Skyline</p>
+</div>
+<div data-packed="true" class="txtNew" id="comp-irp3zruw" style="left: 543px; width: 331px; position: absolute; top: 16px;">
+	<p class="font_9">Creado conWix.com</p>
+</div>
+</div>
+</div>
+</footer>
 <div data-is-mobile="false" data-site-width="980" class="pc1" data-state="" id="PAGES_CONTAINER" style="left: 0px; width: 980px; position: absolute; min-width: 980px; margin-left: 0px; top: 95px; height: 1954px;">
 	<div id="PAGES_CONTAINERscreenWidthBackground" class="pc1screenWidthBackground" style="left: 0px; width: 566px;">
 </div>
@@ -831,10 +868,10 @@
 </div>
 <div data-packed="true" class="txtNew" id="comp-is8ol2d2" style="left: 42px; width: 121px; position: absolute; top: 98px;">
 	<h1 class="font_0">
-		<a href="https://a01274031.wixsite.com/misitio" target="_self">
-			<span style="letter-spacing:0.15em;">OurTalent</span>
-		</a>
-	</h1>
+	<a href="https://a01274031.wixsite.com/misitio" target="_self">
+	<span style="letter-spacing:0.15em;">ourtalent</span>
+</a>
+</h1>
 </div>
 </div>
 </div>
