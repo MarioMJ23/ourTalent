@@ -5,13 +5,28 @@
     
     <meta charset="utf-8">
 
-<title>misitio</title>
+<title>OurTalent</title>
 
 <meta name="generator" content="Wix.com Website Builder">
 
 <meta name="fb_admins_meta_tag" content="">
-<link rel="shortcut icon" href="https://www.wix.com/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="https://www.wix.com/favicon.ico" type="image/x-icon">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <script type="text/javascript" src="https://bam.nr-data.net/1/c99d7f1ab0?a=1963269,76214240&amp;v=1071.385e752&amp;to=ZFAHNkNYXUBQVEUKXF0aNgdDT19WRRhVCkBDVBEBWVxB&amp;ct=http://custom.transaction/a01274031.wixsite.com/misitio&amp;rst=2470&amp;ref=https://a01274031.wixsite.com/misitio&amp;ap=9&amp;be=502&amp;fe=1975&amp;dc=600&amp;af=err,xhr,stn,ins&amp;perf=%7B%22timing%22:%7B%22of%22:1524539564020,%22n%22:0,%22f%22:5,%22dn%22:47,%22dne%22:99,%22c%22:99,%22s%22:173,%22ce%22:266,%22rq%22:266,%22rp%22:467,%22rpe%22:476,%22dl%22:478,%22di%22:514,%22ds%22:600,%22de%22:600,%22dc%22:1975,%22l%22:1975,%22le%22:1975%7D,%22navigation%22:%7B%7D%7D&amp;ja=%7B%22url%22:%22a01274031.wixsite.com/misitio%22,%22sid%22:%2220455532-b4f2-48e1-b475-70006ca0e151%22,%22msid%22:%22dcd4eb8a-09cc-45c3-8436-579714accf97%22,%22experiments%22:%22%5BappMarketCache%5D%5Bsv_tpaAddFullLocale%5D%5BrenderAboveTheFold%5D%5BrendererRpcHeadersSanity%5D%5Bsv_newFonts2017%5D%5Bsv_supportWixSubdomainUrl%5D%5BselectiveWixapps%5D%5BtimedBeat%5D%5Bsv_ampLinkTag%5D%5Bsv_twitterMetaTags%5D%5Bsv_mobileBgFixed%5D%5BgradualReorderOnSave%5D%5Bsv_preferBgDataFromPage%5D%5BajaxForBI%5D%5Bsv_splitRouterUrls%5D%5BselectiveDialogs%5D%5BcheckRenderTime%5D%5BunloadBI%5D%5Bsv_fixedMobileHeader%5D%5Bsv_oldBlogRemoveOnSave%5D%5Bsv_tpaReloadUnresponsiveIframe%5D%5Bsv_blogSocialCounters%5D%5Bsv_batchedImageLoader%5D%5Bse_proGalleryBGDataFixer%5D%5Bsv_qabUnhide%5D%5Bsv_inlineExternalStyles%5D%5Bsv_selectiveWixAds%5D%5BimportScriptsOpt%5D%5Bsv_mobileBG%5D%5Bsv_blogAuthorAsALink%5D%5Bsv_mobileSemantics%5D%5Bsv_persistentMobilePresets%5D%5BwixCodeNoIframe%5D%5BselectiveDownload%5D%5BrenderProgressive%5D%5Bsv_tpaAddChatApp%5D%5Bsv_initialValidationAfterAutoSaveApply%5D%5BprefetchComps%5D%5Bsv_permissionInfoUpdateOnFirstSave%5D%5BwixCodePublicDispatcherSendFreeSiteName%5D%5Bsv_fullPartialSave%5D%5Bsv_horizontalContactFormSkin%5D%5BplatformFetchScripts%5D%5BdisplayWixAdsNewVersion%5D%5Bsv_contactFormEmailSecurityFix%5D%5Bsv_browserLangFix%5D%5Bsv_useMobileTightLayout%5D%5BvsiCoin%5D%5Bsv_contactFormSubmitPromoteAnalytics%5D%5BxsrfHeaderOnPostRequests%5D%5Bsv_mobileSpachtelPattern%5D%5Bsv_bookingInstallScript%5D%5Bsv_requireSplitError%5D%5Bsv_tpaFilterSubSections%5D%22,%22preview%22:0,%22isPremium%22:false,%22uuid%22:%22dee7cc79-5db5-47ee-9d1f-51f88bb73777%22,%22timeSincePublish%22:6677925750,%22vsi%22:%22144a0bf7-6e56-4e24-8a10-13d5cc4e2c03%22,%22debug%22:0%7D&amp;jsonp=NREUM.setToken">
     </script>
     <script src="https://js-agent.newrelic.com/nr-1071.min.js">
@@ -585,43 +600,6 @@
 </div>
 </div>
 </header>
-<footer class="style-j5w5vwtu_footer style-j5w5vwtu" data-sitewidth="980" data-fixedposition="false" data-isrunninginmobile="false" data-state=" " id="SITE_FOOTER" style="bottom: auto; left: 0px; width: 980px; position: absolute; min-width: 980px; margin-left: 0px; top: 2049px; height: 52px;">
-	<div id="SITE_FOOTERscreenWidthBackground" class="style-j5w5vwtuscreenWidthBackground" style="width: 566px; left: 0px;">
-	<div class="style-j5w5vwtu_bg">
-</div>
-</div>
-<div id="SITE_FOOTERcenteredContent" class="style-j5w5vwtucenteredContent" style="width: 100%;">
-	<div id="SITE_FOOTERbg" class="style-j5w5vwtubg">
-</div>
-<div id="SITE_FOOTERinlineContent" class="style-j5w5vwtuinlineContent">
-	<div class="ImageButton_1" data-angle="180" data-state="supports_opacity transition_none   " id="comp-irp290xx" style="left: 465px; width: 50px; position: absolute; transform: rotate(180deg) translateZ(0px); top: 0px; height: 50px;">
-	<a href="https://a01274031.wixsite.com/misitio" target="_self" data-keep-roots="true" data-anchor="SCROLL_TO_TOP" title="" id="comp-irp290xxlink" class="ImageButton_1link" style="width: 50px; height: 50px;">
-	<div class="ImageButton_1_correct-positioning">
-	<div data-style="" class="ImageButton_1defaultImage" id="comp-irp290xxdefaultImage" style="position: relative; width: 50px; height: 50px;">
-	<img id="comp-irp290xxdefaultImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_f7a075b82a84470297070fc65e2508df~mv2.png/v1/fill/w_50,h_50,al_c/84770f_f7a075b82a84470297070fc65e2508df~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
-</div>
-</div>
-<div class="ImageButton_1_correct-positioning">
-	<div data-style="" class="ImageButton_1hoverImage" id="comp-irp290xxhoverImage" style="position: relative; width: 50px; height: 50px;">
-	<img id="comp-irp290xxhoverImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png/v1/fill/w_50,h_50,al_c/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
-</div>
-</div>
-<div class="ImageButton_1_correct-positioning">
-	<div data-style="" class="ImageButton_1activeImage" id="comp-irp290xxactiveImage" style="position: relative; width: 50px; height: 50px;">
-	<img id="comp-irp290xxactiveImageimage" alt="" data-type="image" src="https://static.wixstatic.com/media/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png/v1/fill/w_50,h_50,al_c/84770f_0e11b135814f45afa0af5b4946fc9928~mv2.png" style="width: 50px; height: 50px; object-fit: contain;">
-</div>
-</div>
-</a>
-</div>
-<div data-packed="true" class="txtNew" id="comp-irp3uvk5" style="left: 101px; width: 331px; position: absolute; top: 16px;">
-	<p class="font_9" style="text-align:right;">© 2023 para&nbsp;Skyline</p>
-</div>
-<div data-packed="true" class="txtNew" id="comp-irp3zruw" style="left: 543px; width: 331px; position: absolute; top: 16px;">
-	<p class="font_9">Creado conWix.com</p>
-</div>
-</div>
-</div>
-</footer>
 <div data-is-mobile="false" data-site-width="980" class="pc1" data-state="" id="PAGES_CONTAINER" style="left: 0px; width: 980px; position: absolute; min-width: 980px; margin-left: 0px; top: 95px; height: 1954px;">
 	<div id="PAGES_CONTAINERscreenWidthBackground" class="pc1screenWidthBackground" style="left: 0px; width: 566px;">
 </div>
@@ -853,17 +831,15 @@
 </div>
 <div data-packed="true" class="txtNew" id="comp-is8ol2d2" style="left: 42px; width: 121px; position: absolute; top: 98px;">
 	<h1 class="font_0">
-	<a href="https://a01274031.wixsite.com/misitio" target="_self">
-	<span style="letter-spacing:0.15em;">ourtalent</span>
-</a>
-</h1>
+		<a href="https://a01274031.wixsite.com/misitio" target="_self">
+			<span style="letter-spacing:0.15em;">OurTalent</span>
+		</a>
+	</h1>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="siteAspectsContainer">
-	<div>
 </div>
 <div>
 </div>
