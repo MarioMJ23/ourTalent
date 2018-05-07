@@ -1,15 +1,16 @@
 import  {  Component,  ChangeDetectorRef  }  from  '@angular/core';
-import  {  IonicPage,  NavController,  Platform /*,  NavParams*/  }  from  'ionic-angular';
+import  {  IonicPage,  NavController,  Platform /*,  NavParams */ }  from  'ionic-angular';
 import  {  FormBuilder,  FormGroup,  Validators,  AbstractControl  }  from  '@angular/forms';
-import  {  SplashScreen  }  from  '@ionic-native/splash-screen';
 import  {  StatusBar  }  from  '@ionic-native/status-bar';
-//import  {  Keyboard  }  from  '@ionic-native/keyboard';
+import  {  SplashScreen  }  from  '@ionic-native/splash-screen';
 
 import  {  RestProvider  }  from   '../../providers/rest/rest';
 
 import  {  HomePage  } from  '../home/home';
 import  {  MyProfilePage  }  from  '../my_profile/my_profile';
 import  {  LoginPage  }  from  '../login/login';
+import  {  RegisterActivitiesPage  }  from  '../register_activities/register_activities';
+
 
 import  {  Utils  }  from  '../../app/utils';
 
@@ -26,7 +27,10 @@ import  {  Utils  }  from  '../../app/utils';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  private  paginas:  any =  {  "HomePage":  HomePage,  'MyProfilePage':  MyProfilePage};
+  private  paginas:  any =  {  "HomePage":  HomePage,
+                               "MyProfilePage":  MyProfilePage,
+                               "RegisterActivitiesPage":  RegisterActivitiesPage};
+
   private  validacionesGenerales:  any  =  {
     email: [ '', Validators.compose([  Validators.required,  Validators.minLength(5),  Validators.maxLength(30), Validators.email])],
     password: [ '', Validators.compose([  Validators.required,  Validators.minLength(5),  Validators.maxLength(30)])],
@@ -118,10 +122,11 @@ export class RegisterPage {
                   displayFormat:  'DD-MM-YYYY',
                   pickerFormat: 'DD/MM/YYYY'  };
 
-  constructor(  private  navCtrl:  NavController,
+  constructor(  public  utils:  Utils,
+                private  navCtrl:  NavController,
+                /*private  navParams:  NavParams,*/
                 private  restProvider: RestProvider,
                 private  formBuilder:  FormBuilder,
-                public  utils:  Utils,
                 private  statusBar:  StatusBar,
                 private  splashScreen:  SplashScreen,
                 private  platform:  Platform,
@@ -133,18 +138,19 @@ export class RegisterPage {
     /* Establecer configuración de DatePicker */
     let today = new Date();
     let year  = (today.toISOString()).split('-')[0];
-    //today.setDate(  today.getDate() - (364 * 4));
+
     let fecha_minima_para_usuarios = today.toISOString().replace(  year, (parseInt(  year) - 4).toString());
     this.datePickerConfig.fecha_de_nacimiento.max = fecha_minima_para_usuarios;
     this.datePickerConfig.fecha_de_nacimiento.min  = this.datePickerConfig.fecha_de_nacimiento.max.replace(  (  parseInt( year) - 4), (parseInt(year) - 30));
     this.platform.ready().then(  ()  =>  {
-      this.statusBar.backgroundColorByHexString(  '#c0c0c0');
+      this.statusBar.backgroundColorByHexString(  '#ffffff');
       this.splashScreen.show();
     });
   }
 
-  ngBeforeViewInit()  {
-  }
+  ngOnInit() {}
+
+  ngBeforeViewInit()  {}
 
   ngAfterViewInit()  {
     this.platform.ready().then(  () => {
@@ -167,7 +173,7 @@ export class RegisterPage {
     this.nuevoUsuario.tipo_de_usuario_id  =  obj.id;
   };
 
-  tipoDeUsuarioSeleccionado(  tipo  =  3)  {    
+  tipoDeUsuarioSeleccionado(  tipo  =  3)  {
     if (  this.nuevoUsuario.tipo_de_usuario_id  ==  tipo)
       return  'activated segment-selected';
     else
@@ -175,9 +181,7 @@ export class RegisterPage {
   }
 
   actualizarEstados()  {
-    this.nuevoUsuario.pais_id  =  null;
-
-    if (  this.nuevoUsuario.pais_id)
+    if (  this.nuevoUsuario.pais_id  &&  (  this.nuevoUsuario.pais_id  ==  70  || this.nuevoUsuario.pais_id  == 147))
       this.restProvider.obtenerEstadosPorPais(  this.nuevoUsuario.pais_id).subscribe(
         (  respuesta)  =>  {
           this.procesarEstadosRespuesta(  respuesta);
@@ -190,8 +194,7 @@ export class RegisterPage {
 
 
   actualizarCiudades()  {
-    this.nuevoUsuario.estado_id  =  null;
-    if (  this.nuevoUsuario.estado_id)
+    if (  this.nuevoUsuario.estado_id  &&  (  this.nuevoUsuario.pais_id  ==  70  || this.nuevoUsuario.pais_id  == 147))
       this.restProvider.obtenerCiudadesPorEstado(  this.nuevoUsuario.estado_id).subscribe(
         (  respuesta)  =>  {
           this.procesarCiudadesRespuesta(  respuesta);
@@ -203,7 +206,19 @@ export class RegisterPage {
   };
 
   irSiguiente()  {
-    console.log(  this.nuevoUsuario);
+    if  (  this.registerForm.valid  || 
+          (  !this.usuarioForm.valid && this.nuevoUsuario.tipo_de_usuario_id == 3)  || 
+          (  !this.institucionForm.valid && this.nuevoUsuario.tipo_de_usuario_id == 2))  {
+      let datos  =  {};
+      datos[  'nuevoUsuario']  =  this.nuevoUsuario;
+      datos[  'catalogoDeActividades']  =  this.catalogoDeActividades;
+
+      this.utils.guardarEnStorage(  this.utils.llavesStorage.pre_registro,  this.nuevoUsuario);
+
+      this.navCtrl.push(  this.paginas.RegisterActivitiesPage,  datos);
+    }  else  {
+      this.utils.mostrarAlerta(  "Información incompleta",  "Por favor completa la información para continuar");
+    }
   }
 
   private  procesarEstadosRespuesta(  estadosObjeto)  {
@@ -240,7 +255,12 @@ export class RegisterPage {
     this.initFormularioGeneral();
     this.initFormularioUsuario();
     this.initFormularioInstitucion();
-    this.nuevoUsuario.tipo_de_usuario_id  =  3  //  abriendo el segment por default 
+    this.nuevoUsuario.tipo_de_usuario_id  =  3  //  abriendo el segment por default
+
+    if  (  this.utils.consultarStorage(  this.utils.llavesStorage.pre_registro))  {
+      this.nuevoUsuario  =  this.utils.consultarStorage(  this.utils.llavesStorage.pre_registro);
+      this.nuevoUsuario.actividades  =  {};
+    };
   };
 
   private  initFormularioGeneral()  {

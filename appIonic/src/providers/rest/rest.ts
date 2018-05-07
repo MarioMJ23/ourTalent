@@ -30,19 +30,19 @@ export class RestProvider {
                 private  loadingCtrl:  LoadingController) {
 //    Accesos para la API en virtualHost Local
 
-    this.apiUrl = "http://ourtalent.local.proof:81/api";
-    this.apiGrant_type  = "password";
-    this.apiClient_id = "3";
-    this.apiClient_secret = "fZm5WsuVxzsclKnSxX1BfUizB9JWGPJ4QrTdIljy";
+//    this.apiUrl = "http://ourtalent.local.proof:81/api";
+//    this.apiGrant_type  = "password";
+//    this.apiClient_id = "3";
+//    this.apiClient_secret = "fZm5WsuVxzsclKnSxX1BfUizB9JWGPJ4QrTdIljy";
 
 
 //    Accesos para la API de Amazon Web Services
 
 
-//    this.apiUrl = "http://findourtalent/api";
-//    this.apiGrant_type  = "password";
-//    this.apiClient_id = "3";
-//    this.apiClient_secret = "ro0tTXWfp6TWGtUzW9al6ZI1qOPwEmoF0M7yxRSY";  
+    this.apiUrl = "http://findourtalent.com/api";
+    this.apiGrant_type  = "password";
+    this.apiClient_id = "3";
+    this.apiClient_secret = "ro0tTXWfp6TWGtUzW9al6ZI1qOPwEmoF0M7yxRSY";  
 
   }
 

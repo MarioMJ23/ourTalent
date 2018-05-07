@@ -16,6 +16,7 @@ declare global {
 export  class  Utils  {
   public  llavesStorage:  any  =  {
     usuario:  'dataUsuario',
+    pre_registro:  'preRegistro'
   };
 
   public  classStyles: any  =  {  classButton:  "button-web"};
@@ -108,8 +109,8 @@ export  class  Utils  {
   };
 
   delegarAlertaDeRespuestaErronea(  objetoDeError)  {
-    let  titulo  =  "";
-    let  mensaje  =  "";
+    let  titulo  =  "Error no identificado";
+    let  mensaje  =  "Error con la aplicación no identificado... estamos trabajando para solucionarlo";
 
     if (  401 == objetoDeError.code) {
       titulo  =  "Error de autorización";

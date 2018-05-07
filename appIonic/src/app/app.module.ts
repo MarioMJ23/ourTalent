@@ -14,6 +14,7 @@ import  {  HomePage  }  from  '../pages/home/home';
 import  {  LoginPage  }  from  '../pages/login/login';
 import  {  MyProfilePage  }  from  '../pages/my_profile/my_profile';
 import  {  RegisterPage  }  from  '../pages/register/register';
+import  {  RegisterActivitiesPage  }  from  '../pages/register_activities/register_activities';
 
 import  {  LogoutPage  }  from  '../pages/logout/logout';
 
@@ -34,7 +35,8 @@ import  {  Badge  }  from  '@ionic-native/badge';
     LoginPage,
     MyProfilePage,
     LogoutPage,
-    RegisterPage
+    RegisterPage,
+    RegisterActivitiesPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import  {  Badge  }  from  '@ionic-native/badge';
     LoginPage,
     MyProfilePage,
     LogoutPage,
-    RegisterPage
+    RegisterPage,
+    RegisterActivitiesPage
   ],
   providers: [
     StatusBar,

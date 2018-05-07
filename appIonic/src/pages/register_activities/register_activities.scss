@@ -1,0 +1,19 @@
+page-register-activities {
+  .mi-icono  {
+    width: 100%  !important;
+    background-color:  transparent  !important;
+    display: table-footer-group  !important;
+  }
+
+  .titulo-actividad  {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .actividad-container  {
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 5%;
+    border-color: $darkgreenColor;
+  }
+}
